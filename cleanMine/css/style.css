@@ -1,0 +1,65 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.mainbody{
+  text-align: center;
+  margin-top: 50px;
+}
+
+.box {
+  width: 20px;
+  height: 20px;
+  background-color: #4E62CA;
+  margin: 2px 2px 0 2px;
+  float: left;
+  line-height: 20px;
+  text-align: center;
+}
+
+.box:hover{
+  background-color: #B1FFFF;
+}
+
+.type {
+  text-decoration: none;
+  padding: 10px 20px;
+  background-color: #4E62CA;
+  color: #fff;
+  border-radius: 5px;
+  transition: .5s;
+}
+.type:hover {
+  background-color: #fff;
+  color: #4E62CA;
+}
+.boom {
+  text-decoration: none;
+  padding: 10px 20px;
+  background-color: #4E62CA;
+  color: #fff;
+  border-radius: 5px;
+}
+.container {
+  zoom:1;
+  margin: 20px auto;
+}
+.isMine{
+  color: red;
+  position: relative;
+}
+.isMine:after{
+  content: "B";
+}
+.container:after{
+  content: "";
+  height: 0;
+  overflow: hidden;
+  display: table;
+  clear: both;
+}
+
+.mousedown {
+  background-color: rgb(121, 186, 255)
+}
