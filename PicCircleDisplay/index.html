@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>散列画廊</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="css/style.css" rel="stylesheet">
+    </head>
+    <body onselectstart = "return false">
+        <div class="wrap">
+            <div class="photo photo_front" onclick="turn(this)" id="photo_{{index}}" >
+                <div class="photo_wrap">
+                    <div class="side side_front">
+                        <p class="image"><img src="img/{{img}}" alt="{{img}}" /></p>
+                        <p class="caption">{{caption}}</p>
+                    </div>
+                    <div class="side side_back">
+                        <p class="desc">{{desc}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <script src="img/data.js"></script>
+    <script src="js/main.js"></script>
+    </body>
+</html>
