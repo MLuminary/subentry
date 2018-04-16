@@ -28,11 +28,10 @@
 
   $('.type').on('click', function () {
     var btn = $(this);
-    row = btn.data('height'),
+      row = btn.data('height'),
       col = btn.data('width'),
       mine = btn.data('mine');
-
-    init(mine);
+      init(mine);
   })
   /**
    * 
@@ -116,11 +115,10 @@
 
       sumNormalBox = 0;
 
-      
-
       var coord = $(e.target).attr('id');
       var x = parseInt(coord.split("_")[0]),
         y = parseInt(coord.split("_")[1]);
+
       if (e.which == 1) {
         judgeStatus(x, y);
       } else if (e.which == 3) {
@@ -131,8 +129,7 @@
           $('.mine').text(mineNum);
         } else {
           //高亮九宫格处方块
-          var around = aroundBox(x, y);
-
+          var around = aroundBox(x, y);  
           var sx = around.sx,
             sy = around.sy,
             ex = around.ex,
@@ -287,8 +284,8 @@
       around.sy = 0;
       around.ey = 1;
     } else if (y + 1 >= col) {
-      around.sy = row - 2;
-      around.ey = row - 1;
+      around.sy = col - 2;
+      around.ey = col - 1;
     } else {
       around.sy = y - 1;
       around.ey = y + 1;
