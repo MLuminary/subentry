@@ -6,21 +6,21 @@
 
 ## Weapons
 
-一些实用的处理日常任务的小函数的合集 [跳转](https://github.com/MLuminary/specialEffects/tree/master/Weapons)
+一些实用的处理日常任务的小函数的合集 [跳转](https://github.com/MLuminary/subentry/tree/master/specialTools/Weapons)
 
 
 ## TypeEffect(已封装)
 
-模仿键盘打字的效果 [跳转](https://github.com/MLuminary/specialEffects/tree/master/typeEffect)
+模仿键盘打字的效果 [跳转](https://github.com/MLuminary/subentry/tree/master/specialTools/typeEffect)
 
 ## LoadingTool(已封装)
 
-数字和进度条加载效果 [跳转](https://github.com/MLuminary/specialEffects/tree/master/LoadingTool)
+数字和进度条加载效果 [跳转](https://github.com/MLuminary/subentry/tree/master/specialTools/LoadingTool)
 
 ## CookieVal(已封装)
 
-设置Cookie和读取Cookie [跳转](https://github.com/MLuminary/specialEffects/tree/master/CookieVal)
+设置Cookie和读取Cookie [跳转](https://github.com/MLuminary/subentry/tree/master/specialTools/CookieVal)
 
 ## checkType (已封装)
 
-判断数值类型 [跳转](https://github.com/MLuminary/specialEffects/tree/master/checkType)
+判断数值类型 [跳转](https://github.com/MLuminary/subentry/tree/master/specialTools/checkType)
