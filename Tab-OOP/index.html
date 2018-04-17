@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>tab选项卡</title>
+		<style type="text/css">
+			*{margin: 0;padding: 0;}
+			body{padding:100px; background-color: #323232; font-size: 12px; font-family: "微软雅黑";}
+			ul li{list-style: none;}
+			
+			.tab-view{float: left; margin-right: 50px;}
+			.tab-view p{color: #999; margin-bottom: 20px;}
+		</style>
+		<link rel="stylesheet" type="text/css" href="index.css"/>
+		<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+		<script src="index.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div class="tab-view">
+			<p>1、 没有配置任何参数</p>
+			<div class="tab js-tab">
+				<ul class="tab-nav">
+					<li class="actived"><a href="javascript:;">新闻</a></li>
+					<li><a href="javascript:;">娱乐</a></li>
+					<li><a href="javascript:;">电影</a></li>
+					<li><a href="javascript:;">科技</a></li>
+				</ul>
+				<div class="content-wrap">
+					<div class="content-item current"><img src="img/a.jpg"/></div>
+					<div class="content-item"><img src="img/b.jpg"/></div>
+					<div class="content-item"><img src="img/c.jpg"/></div>
+					<div class="content-item"><img src="img/d.jpg"/></div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="tab-view">
+			<p>2、触发事个click,切换效果为淡入淡出，3秒自动切换。</p>
+			<div class="tab js-tab" data-config='{
+													"triggerType": "click",
+													"effect": "fade",
+													"auto": 3000
+												}'>
+				<ul class="tab-nav">
+					<li class="actived"><a href="javascript:;">新闻</a></li>
+					<li><a href="javascript:;">娱乐</a></li>
+					<li><a href="javascript:;">电影</a></li>
+					<li><a href="javascript:;">科技</a></li>
+				</ul>
+				<div class="content-wrap">
+					<div class="content-item current"><img src="img/a.jpg"/></div>
+					<div class="content-item"><img src="img/b.jpg"/></div>
+					<div class="content-item"><img src="img/c.jpg"/></div>
+					<div class="content-item"><img src="img/d.jpg"/></div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="tab-view">
+			<p>3、默认显示第二个tab内容</p>
+			<div class="tab js-tab" data-config='{"invoke": 2}'>
+				<ul class="tab-nav">
+					<li class="actived"><a href="javascript:;">新闻</a></li>
+					<li><a href="javascript:;">娱乐</a></li>
+					<li><a href="javascript:;">电影</a></li>
+					<li><a href="javascript:;">科技</a></li>
+				</ul>
+				<div class="content-wrap">
+					<div class="content-item current"><img src="img/a.jpg"/></div>
+					<div class="content-item"><img src="img/b.jpg"/></div>
+					<div class="content-item"><img src="img/c.jpg"/></div>
+					<div class="content-item"><img src="img/d.jpg"/></div>
+				</div>
+			</div>
+		</div>
+		
+		<script type="text/javascript">
+			$(function() {
+//				Tab.init($(".js-tab"));
+				$(".js-tab").tab();
+			})
+		</script>
+	</body>
+</html>
