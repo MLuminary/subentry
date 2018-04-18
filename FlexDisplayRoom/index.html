@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>FlexDisplayRoom</title>
+  <link href="https://cdn.bootcss.com/normalize/8.0.0/normalize.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="index.css">
+</head>
+<body>
+  <h2 class="header">FlexDisplayRoom</h2>
+  <div class="container">
+    <div class="atrbox">
+      <ul class="nav">
+        <li class="item isClicked">flex-direction</li>
+        <li class="item">flex-wrap</li>
+        <li class="item">justify-content</li>
+        <li class="item">align-items</li>
+        <li class="item">align-content</li>
+      </ul>
+      <div class="fxdirection box show">
+        <input type="radio" name="fxdirection" id="fxd1" checked="checked">
+        <label for="fxd1">row</label>
+        <input type="radio" name="fxdirection" id="fxd2">
+        <label for="fxd2">row-reverse</label> 
+        <input type="radio" name="fxdirection" id="fxd3">
+        <label for="fxd3">column</label>
+        <input type="radio" name="fxdirection" id="fxd4">
+        <label for="fxd4">column-reverse</label>
+      </div>
+      <div class="fxwrap box">
+        <input type="radio" name="fxwrap" id="fxw1" checked="checked">
+        <label for="fxw1">nowrap</label>
+        <input type="radio" name="fxwrap" id="fxw2">
+        <label for="fxw2">wrap</label> 
+        <input type="radio" name="fxwrap" id="fxw3">
+        <label for="fxw3">wrap-reverse</label>
+      </div>
+      <div class="jtcontent box">
+        <input type="radio" name="jtcontent" id="jtc1" checked="checked">
+        <label for="jtc1">flex-start</label>
+        <input type="radio" name="jtcontent" id="jtc2">
+        <label for="jtc2">flex-end</label> 
+        <input type="radio" name="jtcontent" id="jtc3">
+        <label for="jtc3">center</label>
+        <input type="radio" name="jtcontent" id="jtc4">
+        <label for="jtc4">space-between</label>
+        <input type="radio" name="jtcontent" id="jtc5">
+        <label for="jtc5">space-around</label>
+      </div>
+      <div class="alitems box">
+        <input type="radio" name="alitems" id="ali1" checked="checked">
+        <label for="ali1">stretch</label>
+        <input type="radio" name="alitems" id="ali2">
+        <label for="ali2">flex-start</label> 
+        <input type="radio" name="alitems" id="ali3">
+        <label for="ali3">flex-end</label>
+        <input type="radio" name="alitems" id="ali4">
+        <label for="ali4">center</label> 
+        <input type="radio" name="alitems" id="ali5">
+        <label for="ali5">baseline</label> 
+      </div>
+      <div class="alcontent box">
+        <input type="radio" name="alcontent" id="alc1" checked="checked">
+        <label for="alc1">stretch</label>
+        <input type="radio" name="alcontent" id="alc2">
+        <label for="alc2">flex-start</label> 
+        <input type="radio" name="alcontent" id="alc3">
+        <label for="alc3">flex-end</label>
+        <input type="radio" name="alcontent" id="alc4">
+        <label for="alc4">center</label>
+        <input type="radio" name="alcontent" id="alc5">
+        <label for="alc5">space-between</label>
+        <input type="radio" name="alcontent" id="alc6">
+        <label for="alc6">space-around</label>
+      </div>
+    </div>
+    <div class="itembox">
+      <div class="item">
+        <h3 class="number">1</h3>
+        <input type="text" placeholder="order">
+        <input type="text" placeholder="flex-grow">
+        <input type="text" placeholder="flex-shrink">
+        <input type="text" placeholder="flex-basis">
+        <select name="align-self">
+          <option value="flex-start">flex-start</option>
+          <option value="flex-end">flex-end</option>
+          <option value="center">center</option>
+          <option value="space-between">space-around</option>
+          <option value="stretch">stretch</option>
+          <option selected="selected" value="auto">auto</option>
+        </select>
+      </div>
+      <div class="item"></div>
+      <div class="item"></div>
+    </div>
+  </div>
+  <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+  <script src="index.js"></script>
+</body>
+</html>

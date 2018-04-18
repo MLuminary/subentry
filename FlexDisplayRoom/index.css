@@ -1,0 +1,106 @@
+html,body {
+  font-family: 'PingFang SC';
+}
+
+.header {
+  margin: 0;
+  text-align: center;
+  background-color: #24292e;
+  color: #fff;
+  height: 60px;
+  line-height: 60px;
+  user-select: none;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 95%;
+  margin: 0 auto;
+}
+
+.nav {
+  display: flex;
+  margin: 50px 0 20px 0;
+  flex-wrap: nowrap;
+}
+
+.nav .item {
+  position: relative;
+  list-style: none;
+  font-size: 1.2em;
+  cursor: pointer;
+  height: 1.8rem;
+  font-weight: bold;
+}
+
+.nav .item + .item{
+  margin-left: 20px;
+}
+
+.nav .item:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 100%;
+  width: 0;
+  height: 100%;
+  border-bottom: 2px solid #000;
+  transition: .5s;
+}
+
+.nav .item:hover:after{
+  width: 100%;
+  left: 0;
+}
+
+.nav .item:hover ~ .item::after {
+  left: 0;
+}
+
+.nav .item.isClicked {
+  border-bottom: 2px solid #000;
+}
+
+.box {
+  display: none;
+}
+
+.box.show {
+  display: flex;
+  justify-content: center;
+}
+
+.box input {
+  display: none;
+}
+
+.box label {
+  user-select: none;
+  border: 1px solid #24292e;
+  padding: 5px;
+  margin-left: 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: .3s;
+}
+
+input[type="radio"]:checked + label{
+  color: #fff;
+  background-color: #24292e;
+}
+
+.itembox {
+  display: flex;
+  background-color: #24292e;
+  border-radius: 10px;
+  width: 80%;
+  padding: 10px;
+  margin-top: 30px;
+}
+.itembox .item {
+  background-color: #fff;
+}
+
+
