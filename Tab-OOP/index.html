@@ -38,8 +38,8 @@
 
 <body>
 	<div class="tab-view">
-		<!-- <p>1、 没有配置任何参数</p> -->
-		<div class="tab js-tab">
+		<p>1、 没有配置任何参数</p>
+		<div class="tab js-tab1">
 			<ul class="tab-nav">
 				<li class="actived">
 					<a href="javascript:;">新闻</a>
@@ -71,55 +71,88 @@
 		</div>
 	</div>
 
-	<!-- <div class="tab-view">
-			<p>2、触发事个click,切换效果为淡入淡出，3秒自动切换。</p>
-			<div class="tab js-tab" data-config='{
+	<div class="tab-view">
+		<p>2、触发事个click,切换效果为淡入淡出，3秒自动切换。</p>
+		<div class="tab js-tab2" data-config='{
 													"triggerType": "click",
 													"effect": "fade",
 													"auto": 3000
 												}'>
-				<ul class="tab-nav">
-					<li class="actived"><a href="javascript:;">新闻</a></li>
-					<li><a href="javascript:;">娱乐</a></li>
-					<li><a href="javascript:;">电影</a></li>
-					<li><a href="javascript:;">科技</a></li>
-				</ul>
-				<div class="content-wrap">
-					<div class="content-item current"><img src="img/a.jpg"/></div>
-					<div class="content-item"><img src="img/b.jpg"/></div>
-					<div class="content-item"><img src="img/c.jpg"/></div>
-					<div class="content-item"><img src="img/d.jpg"/></div>
+			<ul class="tab-nav">
+				<li class="actived">
+					<a href="javascript:;">新闻</a>
+				</li>
+				<li>
+					<a href="javascript:;">娱乐</a>
+				</li>
+				<li>
+					<a href="javascript:;">电影</a>
+				</li>
+				<li>
+					<a href="javascript:;">科技</a>
+				</li>
+			</ul>
+			<div class="content-wrap">
+				<div class="content-item current">
+					<img src="img/a.jpg" />
+				</div>
+				<div class="content-item">
+					<img src="img/b.jpg" />
+				</div>
+				<div class="content-item">
+					<img src="img/c.jpg" />
+				</div>
+				<div class="content-item">
+					<img src="img/d.jpg" />
 				</div>
 			</div>
-		</div> -->
+		</div>
+	</div>
 
-	<!-- <div class="tab-view">
-			<p>3、默认显示第二个tab内容</p>
-			<div class="tab js-tab" data-config='{"invoke": 2}'>
-				<ul class="tab-nav">
-					<li class="actived"><a href="javascript:;">新闻</a></li>
-					<li><a href="javascript:;">娱乐</a></li>
-					<li><a href="javascript:;">电影</a></li>
-					<li><a href="javascript:;">科技</a></li>
-				</ul>
-				<div class="content-wrap">
-					<div class="content-item current"><img src="img/a.jpg"/></div>
-					<div class="content-item"><img src="img/b.jpg"/></div>
-					<div class="content-item"><img src="img/c.jpg"/></div>
-					<div class="content-item"><img src="img/d.jpg"/></div>
+	<div class="tab-view">
+		<p>3、默认显示第二个tab内容</p>
+		<div class="tab js-tab3" data-config='{"invoke": 2}'>
+			<ul class="tab-nav">
+				<li class="actived">
+					<a href="javascript:;">新闻</a>
+				</li>
+				<li>
+					<a href="javascript:;">娱乐</a>
+				</li>
+				<li>
+					<a href="javascript:;">电影</a>
+				</li>
+				<li>
+					<a href="javascript:;">科技</a>
+				</li>
+			</ul>
+			<div class="content-wrap">
+				<div class="content-item current">
+					<img src="img/a.jpg" />
+				</div>
+				<div class="content-item">
+					<img src="img/b.jpg" />
+				</div>
+				<div class="content-item">
+					<img src="img/c.jpg" />
+				</div>
+				<div class="content-item">
+					<img src="img/d.jpg" />
 				</div>
 			</div>
-		</div> -->
+		</div>
+	</div>
 
 	<script type="text/javascript">
 		$(function () {
-			//				Tab.init($(".js-tab"));
-			// $(".js-tab").tab();
-			$('.js-tab').tab({
-				triggerType: 'mouseover',//用来定义鼠标的触发类型
-				effect: 'fade',//用来定义内容的切换效果
-				invoke: 2,//默认展示第几个tab
-				auto: 3000 //用来定义tab是否自动切换，指定的时间为切换时间
+			$('.js-tab1').tab();
+			$('.js-tab2').tab({
+				triggerType: "click",
+				effect: "fade",
+				auto: 3000
+			})
+			$('.js-tab3').tab({
+				invoke: 2 
 			})
 		})
 	</script>
