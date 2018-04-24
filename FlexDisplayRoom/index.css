@@ -1,4 +1,5 @@
-html,body {
+html,
+body {
   font-family: 'PingFang SC';
 }
 
@@ -12,10 +13,32 @@ html,body {
   user-select: none;
 }
 
+.dialog {
+  position: fixed;
+  height: 50px;
+  width: 200px;
+  border: 1px solid #ebebeb;
+  box-shadow: 0 2px 12px 0 rgba(0,0,0,.1);
+  background: #fff;
+  border-radius: 5px;
+  line-height: 50px;
+  text-align: center;
+  color:rgba(0,0,0,.8);
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  top: -80px;
+  transition: 1s;
+}
+
+.dialog.show{
+  top: 10px;
+}
+
 .container {
   display: flex;
-  align-items: center;
   flex-direction: column;
+  align-items: center;
   width: 95%;
   margin: 0 auto;
 }
@@ -35,22 +58,22 @@ html,body {
   font-weight: bold;
 }
 
-.nav .item + .item{
+.nav .item + .item {
   margin-left: 20px;
 }
 
 .nav .item:after {
-  content: "";
+  content: '';
   position: absolute;
   top: 0;
   left: 100%;
   width: 0;
   height: 100%;
   border-bottom: 2px solid #000;
-  transition: .5s;
+  transition: 0.5s;
 }
 
-.nav .item:hover:after{
+.nav .item:hover:after {
   width: 100%;
   left: 0;
 }
@@ -83,24 +106,72 @@ html,body {
   margin-left: 15px;
   border-radius: 5px;
   cursor: pointer;
-  transition: .3s;
+  transition: 0.3s;
 }
 
-input[type="radio"]:checked + label{
+input[type='radio']:checked + label {
   color: #fff;
   background-color: #24292e;
 }
 
+.control-box {
+  margin-top: 30px;
+}
+
+.control-box span {
+  font-size: 1.1rem;
+}
+
+.control-box button {
+  cursor: pointer;
+  border: 1px solid #24292e;
+  background-color: #fff;
+  border-radius: 3px;
+  outline: none;
+}
+
 .itembox {
   display: flex;
+  justify-content: flex-start;
   background-color: #24292e;
   border-radius: 10px;
   width: 80%;
   padding: 10px;
   margin-top: 30px;
+  min-height: 350px;
 }
+
 .itembox .item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   background-color: #fff;
+  border-radius: 10px;
+  width: 300px;
+  height: auto;
+  margin: 5px;
+  box-sizing: border-box;
+}
+.itembox .item .number {
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  background-color: #24292e;
+  text-align: center;
+  line-height: 30px;
+  color: #fff;
 }
 
-
+.itembox .item input,
+.itembox .item select {
+  width: 95%;
+  outline: none;
+  border: 0;
+  user-select: none;
+  appearance: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  border-bottom: 1px solid #ddd;
+  margin-top: 5px;
+}

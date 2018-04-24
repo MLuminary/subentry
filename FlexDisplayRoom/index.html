@@ -9,6 +9,9 @@
   <link rel="stylesheet" href="index.css">
 </head>
 <body>
+  <div class="dialog">
+    <!-- 提示信息 -->
+  </div>
   <h2 class="header">FlexDisplayRoom</h2>
   <div class="container">
     <div class="atrbox">
@@ -76,6 +79,16 @@
         <label for="alc6">space-around</label>
       </div>
     </div>
+    <div class="control-box">
+      <span>项目数量:</span>
+      <span class="item-num">1</span>
+      <button class="item-up">+</button>
+      <button class="item-down">-</button>
+
+      <span>项目宽度:</span>
+      <span><span class="item-width-num">150</span>px</span>
+      <input class="item-width" type="range" min="100" max="300">
+    </div>
     <div class="itembox">
       <div class="item">
         <h3 class="number">1</h3>
@@ -92,8 +105,36 @@
           <option selected="selected" value="auto">auto</option>
         </select>
       </div>
-      <div class="item"></div>
-      <div class="item"></div>
+      <div class="item">
+        <h3 class="number">2</h3>
+        <input type="text" placeholder="order">
+        <input type="text" placeholder="flex-grow">
+        <input type="text" placeholder="flex-shrink">
+        <input type="text" placeholder="flex-basis">
+        <select name="align-self">
+          <option value="flex-start">flex-start</option>
+          <option value="flex-end">flex-end</option>
+          <option value="center">center</option>
+          <option value="space-between">space-around</option>
+          <option value="stretch">stretch</option>
+          <option selected="selected" value="auto">auto</option>
+        </select>
+      </div>
+      <div class="item">
+        <h3 class="number">3</h3>
+        <input type="text" placeholder="order">
+        <input type="text" placeholder="flex-grow">
+        <input type="text" placeholder="flex-shrink">
+        <input type="text" placeholder="flex-basis">
+        <select name="align-self">
+          <option value="flex-start">flex-start</option>
+          <option value="flex-end">flex-end</option>
+          <option value="center">center</option>
+          <option value="space-between">space-around</option>
+          <option value="stretch">stretch</option>
+          <option selected="selected" value="auto">auto</option>
+        </select>
+      </div>
     </div>
   </div>
   <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
