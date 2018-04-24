@@ -3,6 +3,22 @@ body {
   font-family: 'PingFang SC';
 }
 
+
+@media screen and (max-width: 800px) {
+  html{
+    font-size: 80%;
+  }
+}
+@media screen and (max-width: 650px) {
+  html{
+    font-size: 60%;
+  }
+}
+
+
+
+
+
 .header {
   margin: 0;
   text-align: center;
@@ -11,6 +27,7 @@ body {
   height: 60px;
   line-height: 60px;
   user-select: none;
+  font-size: 20px;
 }
 
 .dialog {
@@ -45,17 +62,20 @@ body {
 
 .nav {
   display: flex;
-  margin: 50px 0 20px 0;
-  flex-wrap: nowrap;
+  justify-content: center;
+  margin: 2rem 0 1rem 0;
+  flex-wrap: wrap;
+  padding: 0;
 }
 
 .nav .item {
   position: relative;
   list-style: none;
-  font-size: 1.2em;
+  font-size: 1.2rem;
   cursor: pointer;
   height: 1.8rem;
   font-weight: bold;
+  padding: 0;
 }
 
 .nav .item + .item {
@@ -92,7 +112,8 @@ body {
 
 .box.show {
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
+  flex-wrap: wrap;
 }
 
 .box input {
@@ -103,10 +124,10 @@ body {
   user-select: none;
   border: 1px solid #24292e;
   padding: 5px;
-  margin-left: 15px;
   border-radius: 5px;
   cursor: pointer;
   transition: 0.3s;
+  margin-top: 2px;
 }
 
 input[type='radio']:checked + label {
@@ -116,6 +137,9 @@ input[type='radio']:checked + label {
 
 .control-box {
   margin-top: 30px;
+}
+.control-box .item-width  {
+  width: 100px;
 }
 
 .control-box span {
@@ -147,10 +171,11 @@ input[type='radio']:checked + label {
   align-items: center;
   background-color: #fff;
   border-radius: 10px;
-  width: 300px;
   height: auto;
   margin: 5px;
   box-sizing: border-box;
+  transition: .3s;
+  padding-bottom: 10px;
 }
 .itembox .item .number {
   height: 30px;
@@ -174,4 +199,14 @@ input[type='radio']:checked + label {
   -moz-appearance: none;
   border-bottom: 1px solid #ddd;
   margin-top: 5px;
+}
+
+.footer {
+  font-size: 15px;
+}
+.footer a {
+  margin-right: 5px;
+}
+.footer span {
+  margin-left: 5px;
 }
