@@ -1,5 +1,7 @@
 # FlexDisplayRoom
 
+[项目展示地址](http://www.haoqinzz.cn/FlexDisplayRoom/)
+
 ## Flex 布局的基础知识
 
 采用 flex 布局的元素，称为 Flex 容器，它的所有子元素自动成为容器成员，成为 Flex 项目
