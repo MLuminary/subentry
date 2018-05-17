@@ -60,7 +60,6 @@ app.get('/', function(req, res) {
         var teacher = $('.tit a').text().trim();//老师名字
         var level = $('.meta-value').eq(0).text().trim();//难度
         var time = $('.meta-value').eq(1).text().trim();//时长
-        var number = $('.meta-value').eq(2).text().trim();//学习人数
         var grade = $('.meta-value').eq(3).text().trim();//评分
 
         Item.push({
@@ -68,7 +67,6 @@ app.get('/', function(req, res) {
           teacher: teacher,
           level: level,
           time: time,
-          number: number,
           grade: grade,
           href: topicUrl
         })
