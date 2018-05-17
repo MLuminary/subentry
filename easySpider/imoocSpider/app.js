@@ -10,7 +10,7 @@ var app = express();
 http.createServer(app).listen(8080);
 
 app.get('/', function(req, res) {
-  //抓取五页
+  //抓取八页
   var pages = [1, 2, 3, 4, 5, 6, 7, 8];
   var baseUrl = 'https://www.imooc.com/course/list/';
   var homeUrl = 'https://www.imooc.com/';
