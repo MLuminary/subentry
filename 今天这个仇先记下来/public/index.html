@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>今天这个仇先记下来</title>
+  <style>
+    * {
+      margin: 0 auto;
+      font-family: "PingFang SC";
+    }
+
+    .container {
+      margin: 0 auto;
+      width: 250px;
+    }
+
+    #content-box {
+      margin: 50px auto 20px auto;
+      width: 250px;
+      background-color: #fff;
+      border: 1px solid #fff;
+    }
+
+    #btn {
+      display: block;
+      border: 0;
+      border-radius: 5px;
+      color: #fff;
+      background-color: #000;
+      cursor: pointer;
+      padding: 10px 30px;
+      text-align: center;
+    }
+
+    #screen-box {
+      margin: 20px auto;
+    }
+
+
+    #footer {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    #footer a {
+      color: rgba(0, 0, 0, .8);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div id="content-box">
+      <!-- <div class="img-box"> -->
+      <img width="100%" src="jichou.png" alt="记仇">
+      <!-- </div> -->
+      <div contenteditable="true" class="write">
+        2018年5月18日，没人给我点赞，这个仇我先记下来了
+      </div>
+    </div>
+    <a id="btn">保存</a>
+    <div id="screen-box">
+
+    </div>
+    <div id="footer">
+      <a href="https://github.com/MLuminary">Hutchins</a>
+      <a href="https://github.com/MLuminary/subentry">项目地址</a>
+    </div>
+  </div>
+  <script src="https://cdn.bootcss.com/html2canvas/0.5.0-beta4/html2canvas.min.js"></script>
+  <script>
+    var btn = document.getElementById('btn');
+    var contentBox = document.getElementById('content-box');
+    var screenBox = document.getElementById('screen-box');
+    btn.onclick = function (event) {
+      html2canvas(contentBox, {
+        allowTain: true,
+        taintTest: true,
+        onrendered: function (canvas) {
+
+          canvas.id = "mycanvas";
+
+          var dataUrl = canvas.toDataURL('image/jpeg');
+          var newImg = document.createElement("img");
+          newImg.src = dataUrl;
+          //先清空子元素
+          screenBox.innerHTML = '';
+
+          screenBox.appendChild(newImg);
+          downloadFile('jichou',dataUrl);
+        }
+      })
+    }
+
+    function base64Img2Blob(code) {
+      console.log(1);
+      var parts = code.split(';base64,');
+      var contentType = parts[0].split(':')[1];
+      var raw = window.atob(parts[1]);
+      var rawLength = raw.length;
+
+      var uInt8Array = new Uint8Array(rawLength);
+
+      for (var i = 0; i < rawLength; ++i) {
+        uInt8Array[i] = raw.charCodeAt(i);
+      }
+
+      return new Blob([uInt8Array], { type: contentType });
+    }
+
+    function downloadFile(fileName, content) {
+      
+
+      var aLink = document.createElement('a');
+      var blob = base64Img2Blob(content); //new Blob([content]);
+
+      var evt = document.createEvent("MouseEvents");
+      evt.initEvent("click", false, false);//initEvent 不加后两个参数在FF下会报错
+      aLink.download = fileName;
+      aLink.href = URL.createObjectURL(blob);
+
+      aLink.dispatchEvent(evt);
+    }
+
+
+
+
+  </script>
+</body>
+
+</html>
