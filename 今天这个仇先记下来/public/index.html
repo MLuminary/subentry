@@ -47,6 +47,7 @@
 
     #footer a {
       color: rgba(0, 0, 0, .8);
+
     }
   </style>
 </head>
@@ -61,7 +62,10 @@
         <span>2018年5月18日</span> 没人给我点赞，这个仇我先记下来了
       </div>
     </div>
-    <a id="btn">保存</a>
+    <div class="row">
+      <a id="btn">生成</a>
+    </div>
+    
     <div id="screen-box">
 
     </div>
@@ -90,7 +94,6 @@
           screenBox.innerHTML = '';
 
           screenBox.appendChild(newImg);
-          downloadFile('jichou',dataUrl);
         }
       })
     }
