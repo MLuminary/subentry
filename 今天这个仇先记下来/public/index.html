@@ -59,7 +59,7 @@
       <img width="100%" src="jichou.png" alt="记仇">
       <!-- </div> -->
       <div contenteditable="true" class="write">
-        <span>2018年5月18日</span> 没人给我点赞，这个仇我先记下来了
+        <span id="date">2018年5月18日</span> 没人给我点赞，这个仇我先记下来了
       </div>
     </div>
     <div class="row">
@@ -97,6 +97,14 @@
         }
       })
     }
+    //自动生成当前日期
+    var date = new Date();
+    var year = date.getFullYear();
+    var month = date.getMonth()+1;
+    var day = date.getDate();
+    var date = document.getElementById('date');
+    date.innerText = `${year}年${month}月${day}日`;
+
   </script>
 </body>
 
