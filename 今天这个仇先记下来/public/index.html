@@ -24,15 +24,54 @@
       border: 1px solid #fff;
     }
 
+    .row {
+      position: relative;
+    }
+
     #btn {
-      display: block;
       border: 0;
+      width: 100px;
       border-radius: 5px;
       color: #fff;
       background-color: #000;
       cursor: pointer;
       padding: 10px 30px;
       text-align: center;
+      box-sizing: border-box;
+      float: left;
+    }
+
+    .upload {
+      border: 0;
+      width: 100px;
+      border-radius: 5px;
+      color: #fff;
+      background-color: #000;
+      cursor: pointer;
+      padding: 10px 30px;
+      text-align: center;
+      box-sizing: border-box;
+      float: right;
+      cursor: pointer;
+    }
+
+    .clearfloat:after {
+      content: "";
+      height: 0;
+      clear: both;
+      visibility: hidden;
+      display: table-cell;
+    }
+
+    #imageChange {
+      position: absolute;
+      right: 0;
+      top: 0;
+      width: 100px;
+      height: 42px;
+      opacity: 0;
+      z-index: 233;
+      cursor: pointer;
     }
 
     #screen-box {
@@ -56,16 +95,18 @@
   <div class="container">
     <div id="content-box">
       <!-- <div class="img-box"> -->
-      <img width="100%" src="jichou.png" alt="记仇">
+      <img id="image" style="width:100%" src="jichou.png" alt="记仇">
       <!-- </div> -->
       <div contenteditable="true" class="write">
         <span id="date">2018年5月18日</span> 没人给我点赞，这个仇我先记下来了
       </div>
     </div>
-    <div class="row">
+    <div class="row clearfloat">
       <a id="btn">生成</a>
+      <a class="upload">上传</a>
+      <input type="file" id="imageChange">
     </div>
-    
+
     <div id="screen-box">
 
     </div>
@@ -100,10 +141,28 @@
     //自动生成当前日期
     var date = new Date();
     var year = date.getFullYear();
-    var month = date.getMonth()+1;
+    var month = date.getMonth() + 1;
     var day = date.getDate();
     var date = document.getElementById('date');
     date.innerText = `${year}年${month}月${day}日`;
+    //实现自定义上传图片
+    var image = document.getElementById('image');
+    var imageChange = document.getElementById('imageChange');
+    function readUrl(input) {
+      if (input.files && input.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+          image.setAttribute('src', e.target.result)
+        }
+        reader.readAsDataURL(input.files[0]);
+      }
+    }
+
+    imageChange.onchange = function () {
+      readUrl(this);
+    }
+
 
   </script>
 </body>
