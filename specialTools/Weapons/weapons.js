@@ -21,3 +21,33 @@ function findStr(strs, str) {
   arr.pop();
   return arr;
 }
+
+//下载base64图片
+function base64Img2Blob(code) {
+  console.log(1);
+  var parts = code.split(';base64,');
+  var contentType = parts[0].split(':')[1];
+  var raw = window.atob(parts[1]);
+  var rawLength = raw.length;
+
+  var uInt8Array = new Uint8Array(rawLength);
+
+  for (var i = 0; i < rawLength; ++i) {
+    uInt8Array[i] = raw.charCodeAt(i);
+  }
+
+  return new Blob([uInt8Array], { type: contentType });
+}
+//下载base64图片
+function downloadFile(fileName, content) {
+
+  var aLink = document.createElement('a');
+  var blob = base64Img2Blob(content); //new Blob([content]);
+
+  var evt = document.createEvent("MouseEvents");
+  evt.initEvent("click", false, false);//initEvent 不加后两个参数在FF下会报错
+  aLink.download = fileName;
+  aLink.href = URL.createObjectURL(blob);
+
+  aLink.dispatchEvent(evt);
+}
