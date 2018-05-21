@@ -26,11 +26,11 @@ function compile(node, vm) {
     for (var i = 0, l = attr.length; i < l; i++) {
       if (attr[i].nodeName == 'v-model') {
         var name = attr[i].nodeValue; //获取到其绑定的属性名
-        //监听其 input 
-        node.addEventListener('input', function(e){
+        //监听其 input
+        node.addEventListener('input', function(e) {
           //动态改变实例中data属性的值
           vm[name] = e.target.value; //通过访问器属性
-        })
+        });
         node.value = vm[name]; //通过访问器属性
         node.removeAttribute('v-model');
       }
@@ -45,40 +45,94 @@ function compile(node, vm) {
       node.nodeValue = vm[name];
     }
   }
+  //为每一个与实例 data 相关联的属性添加 Watcher
+  new Watcher(vm, node, name);
 }
 
+
 /**
- * 
- * @param {*要操作的对象} obj 
- * @param {*要操作的属性} key 
- * @param {*属性值} val 
+ *
+ * @param {*实例对象} vm
+ * @param {*dom} node
+ * @param {*要监听的属性名称} name
+ */
+function Watcher(vm, node, name) {
+  //将 Watcher 添加到了 Dep 中
+  Dep.target = this;
+  this.name = name;
+  this.node = node;
+  this.vm = vm;
+  this.update();
+  //保证 Dep 只有一个值
+  Dep.target = null;
+}
+
+Watcher.prototype = {
+  //更新
+  update: function() {
+    this.get();
+    this.node.nodeValue = this.value; //将视图更新
+  },
+  //获取data中的属性值
+  get: function() {
+    this.value = this.vm[this.name]; //触发访问器属性
+  }
+};
+
+/**
+ *
+ * @param {*要操作的对象} obj
+ * @param {*要操作的属性} key
+ * @param {*属性值} val
  */
 function defineReactive(obj, key, val) {
+  var dep = new Dep();
   //将对象属性劫持，添加访问器属性
   Object.defineProperty(obj, key, {
-    get: function(){
+    get: function() {
+      //添加订阅者
+      if (Dep.target) dep.addSub(Dep.target);
       return val;
     },
     set: function(newVal) {
-      if(newVal === val) return;
+      if (newVal === val) return;
       val = newVal;
-      console.log(val);
+      //作为发布者发出通知
+      dep.notify();
     }
-  })
+  });
+}
+
+
+/**
+ * 保存订阅者的全局对象
+ */
+function Dep() {
+  this.subs = [];
+}
+
+Dep.prototype = {
+  addSub: function(sub) {
+    this.subs.push(sub);
+  },
+  notify: function(){
+    this.subs.forEach(function(sub){
+      sub.update();
+    })
+  }
 }
 
 /**
- * 
- * @param {*操作对象} obj 
- * @param {*vue实例} vm 
+ *
+ * @param {*操作对象} obj
+ * @param {*vue实例} vm
  */
-function observe(obj,vm){
+function observe(obj, vm) {
   //对obj的属性进行遍历
-  Object.keys(obj).forEach(function(key){
+  Object.keys(obj).forEach(function(key) {
     defineReactive(vm, key, obj[key]);
-  })
+  });
 }
-
 
 /**
  *
