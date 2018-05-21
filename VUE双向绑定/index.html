@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>动手写一个vue双向绑定</title>
+</head>
+<body>
+  <div id="app">
+    <input type="text" v-model="text">
+    {{text}}
+  </div>
+  <script src="vue.js"></script>
+  <script>
+    var vm = new Vue({
+      el: 'app',
+      data: {
+        text: 'hello world'
+      }
+    })
+  </script>
+</body>
+</html>
