@@ -115,11 +115,12 @@
       <a href="https://github.com/MLuminary/subentry">项目地址</a>
     </div>
   </div>
-  <script src="https://cdn.bootcss.com/html2canvas/0.5.0-beta4/html2canvas.min.js"></script>
+  <script src="html2canvas.js"></script>
   <script>
     var btn = document.getElementById('btn');
     var contentBox = document.getElementById('content-box');
     var screenBox = document.getElementById('screen-box');
+    
     btn.onclick = function (event) {
       html2canvas(contentBox, {
         allowTain: true,

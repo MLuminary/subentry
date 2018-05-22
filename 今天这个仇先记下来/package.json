@@ -1,5 +1,6 @@
 {
   "dependencies": {
-    "express": "^4.16.3"
+    "express": "^4.16.3",
+    "html2canvas": "^1.0.0-alpha.12"
   }
 }
