@@ -6,8 +6,15 @@ function swap(arr, a, b) {
   arr[b] = temp;
 }
 
+/**
+ * 
+ * @param {数组} arr 
+ * @param {数组长度} len 
+ * @param {要进行全排列的开头位置} index 
+ */
 function make(arr, len, index) {
   if (index === len) {
+    // console.log(arr);
     var str = arr.toString();
     str = str.replace(/,/g, '');
     console.log(str);
