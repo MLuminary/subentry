@@ -39,4 +39,6 @@ function greed(n, w, m, v) {
   console.log("选择的商品",select)
 }
 
+console.time("贪心用时")
 greed(n, w, m, v);
+console.timeEnd("贪心用时")
