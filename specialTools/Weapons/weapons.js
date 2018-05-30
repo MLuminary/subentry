@@ -51,3 +51,13 @@ function downloadFile(fileName, content) {
 
   aLink.dispatchEvent(evt);
 }
+
+// 将对象数据转为 location.search 的数据格式
+function param(data) {
+  let url = ''
+  for (var k in data) {
+    let value = data[i] !== undefined ? data[k] : ''
+    url += `&${k}=${encodeURIComponent(value)}`
+  }
+  return url ? url.substring(1) : ''
+}
