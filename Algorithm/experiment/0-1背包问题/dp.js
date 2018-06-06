@@ -1,17 +1,13 @@
 //dp解决0-1背包问题
 
 ;(function() {
-  var nDom = document.getElementById('dp-n')
-  var wDom = document.getElementById('dp-w')
-  var mDom = document.getElementById('dp-m')
-  var vDom = document.getElementById('dp-v')
   var ylDom = document.getElementById('dp-yl')
 
   document.getElementById('dp-sub').onclick = function() {
-    var n = parseInt(nDom.value)
-    var w = parseInt(wDom.value)
-    var m = mDom.value.split(',').map(item => parseInt(item))
-    var v = vDom.value.split(',').map(item => parseInt(item))
+    var n = parseInt(dpnDom.value)
+    var w = parseInt(dpwDom.value)
+    var m = dpmDom.value.split(',').map(item => parseInt(item))
+    var v = dpvDom.value.split(',').map(item => parseInt(item))
 
     console.time('动态规划用时')
     packageMaxValue(n, w, m, v)
@@ -62,10 +58,10 @@
     var element = e.target
     var index = element.dataset.index
     if (index) {
-      nDom.value = data[index].n
-      wDom.value = data[index].w
-      mDom.value = data[index].m
-      vDom.value = data[index].v
+      dpnDom.value = data[index].n
+      dpwDom.value = data[index].w
+      dpmDom.value = data[index].m
+      dpvDom.value = data[index].v
     }
   })
 })()

@@ -14,7 +14,6 @@ document.getElementById('random').onclick = function() {
   let w = random(100, 200)
   let m = []
   let v = []
-  console.log(n)
   for (let i = 0; i < n; i++) {
     m[i] = random(20, 60)
     v[i] = random(60, 100)

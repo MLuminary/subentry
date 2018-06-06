@@ -3,17 +3,13 @@
 //   m = [30, 20, 10, 20],
 //   v = [120, 20, 60, 100];
 ;(function() {
-  var nDom = document.getElementById('tx-n')
-  var wDom = document.getElementById('tx-w')
-  var mDom = document.getElementById('tx-m')
-  var vDom = document.getElementById('tx-v')
   var ylDom = document.getElementById('tx-yl')
 
   document.getElementById('tx-sub').onclick = function() {
-    var n = parseInt(nDom.value)
-    var w = parseInt(wDom.value)
-    var m = mDom.value.split(',').map(item => parseInt(item))
-    var v = vDom.value.split(',').map(item => parseInt(item))
+    var n = parseInt(txnDom.value)
+    var w = parseInt(txwDom.value)
+    var m = txmDom.value.split(',').map(item => parseInt(item))
+    var v = txvDom.value.split(',').map(item => parseInt(item))
 
     console.time('贪心用时')
     greed(n, w, m, v)
@@ -60,10 +56,10 @@
     var element = e.target
     var index = element.dataset.index
     if (index) {
-      nDom.value = data[index].n
-      wDom.value = data[index].w
-      mDom.value = data[index].m
-      vDom.value = data[index].v
+      txnDom.value = data[index].n
+      txwDom.value = data[index].w
+      txmDom.value = data[index].m
+      txvDom.value = data[index].v
     }
   })
 })()
