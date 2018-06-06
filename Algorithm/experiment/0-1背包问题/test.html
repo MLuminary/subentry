@@ -5,15 +5,109 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
-  <!-- <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
-    crossorigin="anonymous"> -->
+  <link rel="stylesheet" href="bootstrap.css">
   <title>0-1背包问题</title>
+  <style>
+    .row {
+      padding: 15px;
+    }
+  </style>
 </head>
 
 <body>
+  <div class="container">
+    <h1 class="text-center">0-1背包问题</h1>
+    <div class="panel panel-info">
+      <div class="panel-heading">贪心法</div>
+      <div class="panel-body">
+        <div class="form-group">
+          <label>商品个数</label>
+          <input class="form-control" id="tx-n" placeholder="商品个数">
+        </div>
+        <div class="form-group">
+          <label>容器承受总重量</label>
+          <input type="text" class="form-control" id="tx-w" placeholder="容器承受总重量">
+        </div>
+        <div class="form-group">
+          <label>每个物品的重量</label>
+          <input type="text" class="form-control" id="tx-m" placeholder="中间用英文逗号隔开">
+        </div>
+        <div class="form-group">
+          <label>每个物品的价值</label>
+          <input type="text" class="form-control" id="tx-v" placeholder="中间用英文逗号隔开">
+        </div>
+        <div id="tx-yl" class="row">
+          <button type="button" class="btn btn-primary" data-index="0">样例一</button>
+          <button type="button" class="btn btn-primary" data-index="1">样例二</button>
+          <button type="button" class="btn btn-primary" data-index="2">样例三</button>
+        </div>
+
+        <button type="button" class="btn btn-primary center-block" id="tx-sub">计算</button>
+        <div class="row">
+          <div class="col-md-6">
+            <p>
+              <strong>总价值: </strong>
+              <span id="tx-value"></span>
+            </p>
+          </div>
+          <div class="col-md-6">
+            <p>
+              <strong>选择的商品: </strong>
+              <span id="tx-items"></span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <button type="button" class="btn btn-primary" id="random">根据物品个数随机生成样例</button>
+    </div>
+    <div class="panel panel-info">
+      <div class="panel-heading">动态规划法</div>
+      <div class="panel-body">
+        <div class="form-group">
+          <label>商品个数</label>
+          <input class="form-control" id="dp-n" placeholder="商品个数">
+        </div>
+        <div class="form-group">
+          <label>容器承受总重量</label>
+          <input type="text" class="form-control" id="dp-w" placeholder="容器承受总重量">
+        </div>
+        <div class="form-group">
+          <label>每个物品的重量</label>
+          <input type="text" class="form-control" id="dp-m" placeholder="中间用英文逗号隔开">
+        </div>
+        <div class="form-group">
+          <label>每个物品的价值</label>
+          <input type="text" class="form-control" id="dp-v" placeholder="中间用英文逗号隔开">
+        </div>
+        <div id="dp-yl" class="row">
+          <button type="button" class="btn btn-primary" data-index="0">样例一</button>
+          <button type="button" class="btn btn-primary" data-index="1">样例二</button>
+          <button type="button" class="btn btn-primary" data-index="2">样例三</button>
+        </div>
+        <button type="button" class="btn btn-primary center-block" id="dp-sub">计算</button>
+        <div class="row">
+          <div class="col-md-6">
+            <p>
+              <strong>总价值: </strong>
+              <span id="dp-value"></span>
+            </p>
+          </div>
+          <div class="col-md-6">
+            <p>
+              <strong>选择的商品: </strong>
+              <span id="dp-items"></span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="data.js"></script>
   <script src="greed.js"></script>
   <script src="dp.js"></script>
+  <script src="common.js"></script>
 </body>
 
 </html>

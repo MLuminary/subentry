@@ -5,8 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
-    crossorigin="anonymous">
+  <link rel="stylesheet" href="bootstrap.css">
   <title>实验一：快速排序</title>
   <style>
     .box {
@@ -17,16 +16,16 @@
     .btn {
       margin-bottom: 20px;
     }
-    
   </style>
 </head>
 
 <body>
   <div class="box">
+    <h2>快速排序</h2>
     <input class="form-control" placeholder="输入要排序的数组,并用英文逗号分隔开" id="in" type="text">
     <br>
     <button id="sortBtn" class="btn btn-primary">排序</button>
-    <textarea class="form-control" id="out"></textarea>
+    <textarea class="form-control" id="out" placeholder="结果默认按升序排列"></textarea>
   </div>
   <script src="index.js"></script>
 </body>
