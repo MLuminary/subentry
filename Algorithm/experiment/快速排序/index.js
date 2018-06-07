@@ -86,6 +86,16 @@ sortBtn.onclick = function() {
   document.getElementById('out').value = result.toString()
 }
 
+var random = document.getElementById('random')
+
+random.onclick = function() {
+  var num = []
+  for (var i = 0; i < 100; i++) {
+    num[i] = Math.floor(Math.random() * 1000)
+  }
+  document.getElementById('in').value = num;
+}
+
 var arr1 = [] //最坏情况
 var arr2 = [] //随机数组
 
