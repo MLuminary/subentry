@@ -10,7 +10,7 @@
     var v = dpvDom.value.split(',').map(item => parseInt(item))
 
     console.time('动态规划用时')
-    var obj = packageMaxValue(n, w, m, v)
+    var obj = dp(n, w, m, v)
     console.timeEnd('动态规划用时')
 
     
@@ -25,7 +25,7 @@
    * @param {各个商品的重量} m
    * @param {各个商品的价值} v
    */
-  function packageMaxValue(n, w, m, v) {
+  function dp(n, w, m, v) {
     let bagMatrix = []
     let maxValue = 0
     let select = []

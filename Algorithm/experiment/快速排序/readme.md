@@ -122,7 +122,7 @@ function sort(arr, left, right) {
 }
 ```
 
-### 2.源程序代码
+### 源程序代码
 
 ```js
 /**
