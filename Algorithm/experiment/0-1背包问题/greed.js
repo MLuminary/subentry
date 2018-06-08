@@ -12,8 +12,11 @@
     var v = txvDom.value.split(',').map(item => parseInt(item))
 
     console.time('贪心用时')
-    greed(n, w, m, v)
+    var obj = greed(n, w, m, v)
     console.timeEnd('贪心用时')
+
+    document.getElementById('tx-value').innerText = obj.value
+    document.getElementById('tx-items').innerText = obj.select
   }
 
   /**
@@ -48,8 +51,7 @@
     }
 
     select.sort((a, b) => a - b)
-    document.getElementById('tx-value').innerText = value
-    document.getElementById('tx-items').innerText = select
+    return {value, select};
   }
 
   ylDom.addEventListener('click', function(e) {
