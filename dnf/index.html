@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>简易拍卖行计算器</title>
+  <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+  <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+    crossorigin="anonymous">
+  <style>
+    .row {
+      margin: 10px 0;
+    }
+
+    .panel {
+      margin-top: 50px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="panel panel-info">
+      <div class="panel-heading">简易拍卖行计算器</div>
+      <div class="panel-body">
+        <div class="row">
+          <div class="form-group">
+            <label class="col-sm-2 control-label">购买价格</label>
+            <div class="col-sm-10">
+              <input class="form-control buy" placeholder="购买价格">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-group">
+            <label class="col-sm-2 control-label">上架价格</label>
+            <div class="col-sm-10">
+              <input class="form-control on" placeholder="上架价格">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-group">
+            <label class="col-sm-2 control-label">购买数量</label>
+            <div class="col-sm-10">
+              <input class="form-control number" placeholder="购买数量">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" class="youhui"> 拥有优惠卷
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+              <button class="btn btn-info calc">计算</button>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <label for="inputPassword3" class="col-sm-2 control-label">净利润</label>
+          <div class="col-sm-10">
+            <span class="money"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel panel-info">
+      <div class="panel-heading">简易搬砖计算器</div>
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="row">
+              <div class="form-group">
+                <label class="col-sm-3 control-label">魔刹石数量</label>
+                <div class="col-sm-9">
+                  <input class="form-control mcsNum" placeholder="魔刹石数量">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="row">
+              <div class="form-group">
+                <label class="col-sm-3 control-label">魔刹石价格</label>
+                <div class="col-sm-9">
+                  <input class="form-control mcsPrice" placeholder="魔刹石价格">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="row">
+              <div class="form-group">
+                <label class="col-sm-3 control-label">无色/矛盾数量</label>
+                <div class="col-sm-9">
+                  <input class="form-control wsNum" placeholder="无色数量">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="row">
+              <div class="form-group">
+                <label class="col-sm-3 control-label">无色/矛盾价格</label>
+                <div class="col-sm-9">
+                  <input class="form-control wsPrice" placeholder="无色价格">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="row">
+              <div class="form-group">
+                <label class="col-sm-3 control-label">金币数量</label>
+                <div class="col-sm-9">
+                  <input class="form-control jbNum" placeholder="金币数量">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="row">
+              <div class="form-group">
+                <label class="col-sm-3 control-label">金币比例(万)</label>
+                <div class="col-sm-9">
+                  <input class="form-control jbRatio" placeholder="金币比例">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <div class="col-sm-offset-3 col-sm-9">
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox" class="bz-youhui"> 拥有优惠卷
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-group">
+            <div class="col-md-6">
+              <div class="col-sm-offset-3 col-sm-9">
+                <button class="btn btn-info bz-calc">计算</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <label class="col-sm-3 control-label">游戏币所得</label>
+            <div class="col-sm-9">
+              <span class="bz-money"></span>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <label class="col-sm-3 control-label">人民币所得</label>
+            <div class="col-sm-9">
+              <span class="bz-rmb"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <a href="https://github.com/MLuminary/subentry/dnf">By Hutchins</a>
+  </div>
+
+
+
+  <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+  <script>
+
+    // 简易拍卖行计算器
+    $('.calc').click(function () {
+      var isYouHui = $('.youhui').prop('checked')
+      let money = parseInt($('.number').val()) * (parseInt($('.on').val()) - parseInt($('.buy').val()) - parseInt($('.on').val()) / 100 * (isYouHui ? 3 : 5))
+      $('.money').text(money)
+    })
+
+    // 简易搬砖计算器
+    $('.bz-calc').click(function () {
+      var isYouHui = $('.bz-youhui').prop('checked')
+      var yxbcount = 0;
+      var rmbcount = 0;
+      var mcsPrice = parseInt($('.mcsNum').val()) * (parseInt($('.mcsPrice').val()) - parseInt($('.mcsPrice').val()) / 100 * (isYouHui ? 3 : 5))
+      var wsPrice = parseInt($('.wsNum').val()) * (parseInt($('.wsPrice').val()) - parseInt($('.wsPrice').val()) / 100 * (isYouHui ? 3 : 5))
+      var jbPrice = parseInt($('.jbNum').val())
+      var jsRatio = parseInt($('.jbRatio').val())
+
+      console.log(mcsPrice)
+      if (mcsPrice) {
+        yxbcount += mcsPrice
+      }
+      if (wsPrice) {
+        yxbcount += wsPrice
+      }
+      if (jbPrice) {
+        yxbcount += jbPrice
+      }
+      if (jsRatio) {
+        rmbcount = (yxbcount / jsRatio / 10000).toFixed(2);
+      }
+      $('.bz-money').text(yxbcount)
+      $('.bz-rmb').text(rmbcount)
+    })
+
+  </script>
+</body>
+
+</html>
