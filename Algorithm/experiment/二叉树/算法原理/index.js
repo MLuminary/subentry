@@ -78,6 +78,7 @@ function BinaryTree() {
     }
   }
 
+  // 后序遍历
   var backOrderTraverseNode = function(node, callback) {
     if (node !== null) {
       // 遍历左子树
@@ -93,6 +94,93 @@ function BinaryTree() {
     if (root !== null) {
       backOrderTraverseNode(root, callback)
     }
+  }
+
+  var findMinNode = function(node) {
+    if (node) {
+      // 当 node 有左节点
+      while (node && node.left !== null) {
+        // 将 node 赋值为当前 node 的左节点
+        node = node.left
+      }
+      return node
+    }
+  }
+
+  this.min = function() {
+    return findMinNode(root)
+  }
+
+  var findMaxNode = function(node) {
+    if (node) {
+      // 当 node 有右节点
+      while (node && node.right !== null) {
+        node = node.right
+      }
+      return node
+    }
+  }
+
+  this.max = function() {
+    return findMaxNode(root)
+  }
+
+  // 二叉树查找
+  var searchNode = function(node, key) {
+    if (node === null) {
+      return false
+    }
+
+    if (key < node.key) {
+      // 值小于当前节点，去左子树去查找
+      return searchNode(node.left, key)
+    } else if (key > node.key) {
+      // 值小于当前节点，去右子树去查找
+      return searchNode(node.right, key)
+    } else {
+      return true
+    }
+  }
+
+  this.search = function(key) {
+    return searchNode(root, key)
+  }
+
+  // 删除节点
+  var removeNode = function(node, key) {
+    if (node === null) {
+      return null
+    }
+    // 当值小于当前节点值
+    if (key < node.key) {
+      // 对 node.left 的值进行判断是否删除
+      node.left = removeNode(node.left, key)
+      return node
+    } else if (key > node.key) {
+      node.right = removeNode(node.right, key)
+      return node
+    } else {
+      // 当相等节点没有左子树和右子树时
+      if (node.left === null && node.right === null) {
+        // 直接删除
+        return null
+      } else if (node.left === null) {
+        return node.right
+      } else if (node.right === null) {
+        return node.left
+      } else {
+        var minNode = findMinNode(node.right)
+        node.key = minNode.key
+        node.right = removeNode(node.right, minNode.key)
+        return node
+      }
+    }
+  }
+
+  // 二叉树节点删除
+  this.remove = function(key) {
+    root = removeNode(root, key)
+    this.show()
   }
 
   // 展现二叉树
@@ -112,10 +200,15 @@ nodes.forEach(item => {
 var callback = function(key) {
   console.log(key)
 }
-// 中序遍历
+
 console.log('中序遍历')
 binaryTree.midOrderTraverse(callback)
 console.log('前序遍历')
 binaryTree.preOrderTraverse(callback)
 console.log('后序遍历')
 binaryTree.backOrderTraverse(callback)
+console.log('最小值', binaryTree.min().key)
+console.log('最大值', binaryTree.max().key)
+console.log(binaryTree.search(14))
+
+binaryTree.remove(3)
