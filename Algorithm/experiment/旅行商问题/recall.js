@@ -2,13 +2,7 @@ var n = 5; //五个城市
 var x = [0, 1, 2, 3, 4]; //城市编号数组
 var bestValue = Infinity; //最优的费用
 var bestWay = [];
-var arr = [
-  [0, 3, 3, 2, 6],
-  [3, 0, 7, 3, 2],
-  [3, 7, 0, 2, 5],
-  [2, 3, 2, 0, 3],
-  [6, 2, 5, 3, 0]
-];
+
 
 function swap(arr, a, b) {
   var temp = arr[a];
@@ -70,10 +64,9 @@ function recall(n, way, index) {
     if (way[x[n - 1]][x[0]] !== 0 && cl + way[x[n - 1]][x[0]] < bestValue) {
      
       for (let j = 0; j < n; j++) {
-        bestWay[j] = x[j];
+        bestWay[j] = x[j] + 1;
       }
       bestValue = cl + way[x[n - 1]][x[0]];
-      console.log(x,bestValue)
     }
   } else {
     for (let i = index; i < n; i++) {
@@ -89,9 +82,14 @@ function recall(n, way, index) {
   }
 }
 
+document.getElementById('hs-calc').onclick = function() {
+  console.time('回溯耗时');
+  recall(n, arr, 1);
+  console.timeEnd('回溯耗时');
 
-console.time('回溯耗时');
-recall(n, arr, 1);
-console.timeEnd('回溯耗时');
-console.log('最少费用:', bestValue);
-console.log('最优路径:', bestWay);
+  document.getElementById('hs-value').innerText = bestValue
+  document.getElementById('hs-items').innerText = bestWay
+}
+
+
+

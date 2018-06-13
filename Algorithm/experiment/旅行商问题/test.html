@@ -1,13 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="bootstrap.css">
   <title>旅行商问题</title>
+  <style>
+    .row {
+      padding: 15px;
+    }
+  </style>
 </head>
+
 <body>
-  <!-- <script src="recall.js"></script> -->
-  <script src="limit.js"></script>
+  <div class="container">
+    <div class="panel panel-info">
+      <div class="panel-heading">回溯法</div>
+      <div class="panel-body">
+        <div class="form-group">
+          <label>城市个数</label>
+          <input type="text" class="form-control" id="cityNum" placeholder="城市个数">
+          <div class="row">
+            <button class="btn btn-info" id="hs-random">随机化生成数据</button>
+          </div>
+          <div class="table-responsive">
+            <table class="table" id="hs-random-num">
+            </table>
+          </div>
+          <div class="row">
+            <button class="btn btn-info" id="hs-calc">计算</button>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <p>
+                <strong>最少费用: </strong>
+                <span id="hs-value"></span>
+              </p>
+            </div>
+            <div class="col-md-6">
+              <p>
+                <strong>最优路径: </strong>
+                <span id="hs-items"></span>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="data.js"></script>
+  <script src="recall.js"></script>
+
+  <!-- <script src="limit.js"></script> -->
 </body>
+
 </html>
