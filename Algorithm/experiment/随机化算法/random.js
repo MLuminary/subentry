@@ -10,3 +10,4 @@ function rand(number){
 };
 
 console.log(rand(100)); 
+
