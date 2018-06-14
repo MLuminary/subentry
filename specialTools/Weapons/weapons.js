@@ -90,3 +90,40 @@ function unescape(str) {
   elem.innerHTML = str
   return elem.innerText || elem.textContent
 }
+
+
+
+// 写一个函数对下面的数组从小到大进行排序
+// 数组中每一个元素均为版本号
+// 版本号比较规则如下
+// '4.8' === '4.8.0'
+// '4.8' > '4.7.1'
+// '4.8' < '4.10'
+
+var versions = ['4.8', '4.7.1', '4.8.0', '4.10', '5', '4.1']
+
+function sortVersions() {
+  // code here
+  versions.sort((a,b)=>{
+    var arr1 = a.split('.')
+    var arr2 = b.split('.')
+    var minL = Math.min(arr1.length,arr2.length)
+    var pos = 0
+    var diff = 0
+    while(pos !== minL) {
+      if(arr1[diff] === arr2[diff]){
+        diff++
+      }else {
+        return arr1[diff] - arr2[diff]
+      }
+      pos++
+    }
+
+  })
+  console.log(versions)
+
+}
+
+sortVersions()
+
+// return ['4.1', '4.7.1', '4.8', '4.8.0', '4.10', '5']
