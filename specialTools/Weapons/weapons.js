@@ -78,11 +78,11 @@ function escapeHtml(text) {
   })
 }
 // 将HTML转义为实体
-function escape(html){
+function escape(html) {
   var elem = document.createElement('div')
   var txt = document.createTextNode(html)
   elem.appendChild(txt)
-  return elem.innerHTML;
+  return elem.innerHTML
 }
 // 将实体转回为HTML
 function unescape(str) {
@@ -90,8 +90,6 @@ function unescape(str) {
   elem.innerHTML = str
   return elem.innerText || elem.textContent
 }
-
-
 
 // 写一个函数对下面的数组从小到大进行排序
 // 数组中每一个元素均为版本号
@@ -104,26 +102,67 @@ var versions = ['4.8', '4.7.1', '4.8.0', '4.10', '5', '4.1']
 
 function sortVersions() {
   // code here
-  versions.sort((a,b)=>{
+  versions.sort((a, b) => {
     var arr1 = a.split('.')
     var arr2 = b.split('.')
-    var minL = Math.min(arr1.length,arr2.length)
+    var minL = Math.min(arr1.length, arr2.length)
     var pos = 0
     var diff = 0
-    while(pos !== minL) {
-      if(arr1[diff] === arr2[diff]){
+    while (pos !== minL) {
+      if (arr1[diff] === arr2[diff]) {
         diff++
-      }else {
+      } else {
         return arr1[diff] - arr2[diff]
       }
       pos++
     }
-
   })
   console.log(versions)
-
 }
 
 sortVersions()
 
 // return ['4.1', '4.7.1', '4.8', '4.8.0', '4.10', '5']
+
+// 防抖
+function debounce(func, wait) {
+  // 定时器变量
+  var timer
+  return function() {
+    var content = this,
+      args = arguments
+    var later = function() {
+      // 传递 this 和 参数
+      func.apply(content, args)
+    }
+    // 取消定时器
+    clearTimeout(timer)
+    timer = setTimeout(later, wait)
+  }
+}
+
+// 节流
+function throttle(func, wait, maxTime) {
+  var timer,
+    startTime = new Date() // 获取第一次执行的时间
+
+  return function() {
+    var content = this,
+      args = arguments,
+      curTime = new Date() // 获取当前时间
+
+    var later = function() {
+      func.apply(content, args)
+    }
+
+    clearTimeout(timer)
+
+    if (curTime - startTime >= maxTime) {
+      later()
+      // 更新开始时间
+      startTime = new Date()
+    } else {
+      timer = setTimeout(later, wait)
+    }
+  }
+}
