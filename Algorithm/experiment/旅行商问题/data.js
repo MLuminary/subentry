@@ -29,5 +29,4 @@ hs_random_btn.onclick = function() {
   }
 
   document.getElementById('hs-random-num').innerHTML = html
-  document.getElementById('fz-random-num').innerHTML = html
 }

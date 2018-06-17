@@ -89,7 +89,6 @@ document.getElementById('hs-calc').onclick = function() {
 
   document.getElementById('hs-value').innerText = bestValue
   document.getElementById('hs-items').innerText = bestWay
-  document.getElementById('fz-value').innerText = bestValue
 }
 
 
