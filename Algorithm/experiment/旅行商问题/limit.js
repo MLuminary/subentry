@@ -225,11 +225,9 @@ function branch() {
         if (next.lb >= up) continue
         q.push(next)
       }
-      console.log(q.show())
     }
   }
-  console.log(ret)
-  // return ret
+  return ret
 }
 
 branch()

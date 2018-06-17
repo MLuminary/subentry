@@ -52,10 +52,36 @@
         </div>
       </div>
     </div>
+    <div class="panel panel-info">
+      <div class="panel-heading">分支限界法</div>
+      <div class="panel-body">
+        <div class="form-group">
+          <label>城市个数</label>
+          <input type="text" class="form-control" placeholder="城市个数">
+          <div class="row">
+            <button class="btn btn-info">随机化生成数据</button>
+          </div>
+          <div class="table-responsive">
+            <table class="table" id="fz-random-num">
+            </table>
+          </div>
+          <div class="row">
+            <button class="btn btn-info">计算</button>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <p>
+                <strong>最少费用: </strong>
+                <span id="fz-value"></span>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
   <script src="data.js"></script>
   <script src="recall.js"></script>
-
   <!-- <script src="limit.js"></script> -->
 </body>
 
