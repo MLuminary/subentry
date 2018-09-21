@@ -1,0 +1,16 @@
+{
+  "name": "mini-circleprogress",
+  "version": "1.0.2",
+  "description": "a mini program circle-progress plugin",
+  "main": "./src/mini-circleprogress.vue",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "progress",
+    "mini"
+  ],
+  "author": "hutchins",
+  "license": "ISC",
+  "private": false
+}
