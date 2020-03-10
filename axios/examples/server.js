@@ -18,6 +18,9 @@ app.use(
   })
 )
 
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: true }))
+
 const router = express.Router()
 
 router.get('/simple/get', function(req, res) {
@@ -51,9 +54,6 @@ app.use(router)
 app.use(webpackHotMiddleware(compiler))
 
 app.use(express.static(__dirname))
-
-app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({ extended: true }))
 
 const port = process.env.PORT || 3000
 module.exports = app.listen(port, () => {
