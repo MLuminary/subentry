@@ -1,10 +1,10 @@
-import { AxiosPromise, AxiosResponse } from './types/index'
-import { AxiosRequestConfig } from './types'
-import { parseHeaders } from '../helpers/header'
+import { AxiosPromise, AxiosRequestConfig, AxiosResponse } from './types'
+import { parseHeaders } from './helpers/header'
+import { createError } from './helpers/error'
 
 export default function xhr(config: AxiosRequestConfig): AxiosPromise {
-  return new Promise(resolve => {
-    const { data = null, method = 'GET', url, headers, responseType } = config
+  return new Promise((resolve, reject) => {
+    const { data = null, method = 'GET', url, headers, responseType, timeout } = config
 
     const request = new XMLHttpRequest()
 
@@ -12,10 +12,19 @@ export default function xhr(config: AxiosRequestConfig): AxiosPromise {
       request.responseType = responseType
     }
 
+    if (timeout) {
+      // 设置过期时间
+      request.timeout = timeout
+    }
+
     request.open(method.toLocaleUpperCase(), url, true)
 
     request.onreadystatechange = () => {
       if (request.readyState !== 4) {
+        return
+      }
+      // 如果 XMLHttpRequest 出错
+      if (request.status === 0) {
         return
       }
 
@@ -30,7 +39,24 @@ export default function xhr(config: AxiosRequestConfig): AxiosPromise {
         config,
         request
       }
-      resolve(response)
+
+      handleResponse(response)
+    }
+
+    const handleResponse = (response: AxiosResponse) => {
+      if (response.status >= 200 && response.status < 300) {
+        resolve(response)
+      } else {
+        reject(
+          createError(
+            `Request failed with status code ${response.status}`,
+            config,
+            null,
+            request,
+            response
+          )
+        )
+      }
     }
 
     // set headers
@@ -41,6 +67,16 @@ export default function xhr(config: AxiosRequestConfig): AxiosPromise {
         request.setRequestHeader(name, headers[name])
       }
     })
+
+    request.ontimeout = () => {
+      reject(
+        createError(`Timeout of ${config.timeout} ms exceeded`, config, 'ECONNABORTED', request)
+      )
+    }
+
+    request.onerror = () => {
+      reject(createError('Network Error', config, null, request))
+    }
 
     request.send(data)
   })
