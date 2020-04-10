@@ -1,5 +1,5 @@
 import { AxiosResponse } from '../types/index'
-import { processHeaders } from '../helpers/header'
+import { processHeaders, flattenHeaders } from '../helpers/header'
 import { transformRequest, transformResponse } from '../helpers/data'
 import { buildURL } from '../helpers/url'
 import { AxiosRequestConfig, AxiosPromise } from '../types'
@@ -14,11 +14,12 @@ const processConfig = (config: AxiosRequestConfig) => {
   config.url = transformUrl(config)
   config.headers = transformHeaders(config)
   config.data = transformRequestBody(config)
+  config.headers = flattenHeaders(config.headers, config.method || 'get')
 }
 
 const transformUrl = (config: AxiosRequestConfig) => {
   const { url, params } = config
-  return buildURL(url, params)
+  return buildURL(url!, params)
 }
 
 const transformRequestBody = (config: AxiosRequestConfig) => {

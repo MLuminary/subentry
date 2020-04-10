@@ -10,6 +10,7 @@ import {
 
 import { dispatchRequest } from './dispatchRequest'
 import InterceptorManager from './InterceptorManager'
+import { mergeConfig } from './mergeConfig'
 
 interface PromiseChain {
   resolved: ResolvedFn | ((config: AxiosRequestConfig) => AxiosPromise)
@@ -17,9 +18,11 @@ interface PromiseChain {
 }
 
 export default class Axios {
+  defaults: AxiosRequestConfig
   interceptors: Interceptors
 
-  constructor() {
+  constructor(initConfig: AxiosRequestConfig) {
+    this.defaults = initConfig
     this.interceptors = {
       request: new InterceptorManager<AxiosRequestConfig>(),
       response: new InterceptorManager<AxiosResponse>()
@@ -52,7 +55,7 @@ export default class Axios {
     })
 
     // 流首先需要 config 为参数启动
-    let promise = Promise.resolve(axiosConfig) as Promise<any>
+    let promise = Promise.resolve(mergeConfig(this.defaults, axiosConfig)) as Promise<any>
 
     while (chain.length) {
       const { resolved, rejected } = chain.shift()!

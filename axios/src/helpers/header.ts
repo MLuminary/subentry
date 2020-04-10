@@ -1,4 +1,5 @@
-import { isObject } from './utils'
+import { Method } from './../types/index'
+import { isObject, deepMerge } from './utils'
 
 const DEFAULT_HEADER_CONTENT_TYPE = 'application/json;charset=utf-8'
 
@@ -48,4 +49,19 @@ export const parseHeaders = (headers: string): any => {
   })
 
   return parsed
+}
+
+export const flattenHeaders = (headers: any, method: Method): any => {
+  if (!headers) {
+    return
+  }
+  headers = deepMerge(headers.common || {}, headers[method] || {}, headers)
+
+  const methodsToDelete = ['delete', 'get', 'head', 'options', 'post', 'put', 'patch', 'common']
+
+  methodsToDelete.forEach(method => {
+    delete headers[method]
+  })
+
+  return headers
 }
