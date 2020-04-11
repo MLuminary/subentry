@@ -16,6 +16,10 @@ export type Method =
   | 'patch'
   | 'PATCH'
 
+export interface AxiosTransformer {
+  (data: any, headers?: any): any
+}
+
 export interface AxiosRequestConfig {
   url?: string
   method?: Method
@@ -24,6 +28,9 @@ export interface AxiosRequestConfig {
   headers?: any
   responseType?: XMLHttpRequestResponseType // 设定相应的类型
   timeout?: number // 请求默认的超时时间
+
+  transformRequest?: AxiosTransformer | AxiosTransformer[]
+  transformResponse?: AxiosTransformer | AxiosTransformer[]
 
   [propName: string]: any
 }
