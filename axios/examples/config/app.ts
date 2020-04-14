@@ -3,20 +3,20 @@ import qs from 'qs'
 
 axios.defaults.headers.common['test2'] = 123
 
-axios({
-  url: '/config/post',
-  method: 'post',
-  data: {
-    a: 1
-  },
-  headers: {
-    test: '321'
-  }
-})
-  .then(res => {
-    console.log(res.data)
-  })
-  .catch(err => console.info(err))
+// axios({
+//   url: '/config/post',
+//   method: 'post',
+//   data: {
+//     a: 1
+//   },
+//   headers: {
+//     test: '321'
+//   }
+// })
+//   .then(res => {
+//     console.log(res.data)
+//   })
+//   .catch(err => console.info(err))
 
 axios({
   transformRequest: [
@@ -44,3 +44,32 @@ axios({
     console.log(res.data)
   })
   .catch(err => console.info(err))
+
+const instance = axios.create({
+  transformRequest: [
+    function(data) {
+      return qs.stringify(data)
+    },
+    ...(axios.defaults.transformRequest as AxiosTransformer[])
+  ],
+  transformResponse: [
+    ...(axios.defaults.transformResponse as AxiosTransformer[]),
+    function(data) {
+      if (typeof data === 'object') {
+        data.b = 3
+      }
+      return data
+    }
+  ]
+})
+
+// tslint:disable-next-line: no-floating-promises
+instance({
+  url: '/config/post',
+  method: 'post',
+  data: {
+    a: 1
+  }
+}).then(res => {
+  console.log(res.data)
+})

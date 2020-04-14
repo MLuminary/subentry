@@ -75,9 +75,15 @@ export interface Axios {
 }
 
 export interface AxiosInstance extends Axios {
+  defaults: AxiosRequestConfig
+
   <T = any>(config: AxiosRequestConfig): AxiosPromise<T>
 
   <T = any>(url: string, config?: Omit<AxiosRequestConfig, 'url'>): AxiosPromise<T>
+}
+
+export interface AxiosStatic extends AxiosInstance {
+  create(config?: AxiosRequestConfig): AxiosInstance
 }
 
 export interface ResponseData<T> {
