@@ -76,6 +76,14 @@ router.post('/config/post', function(req, res) {
   res.json(req.body)
 })
 
+router.get('/cancel/get', function(req, res) {
+  setTimeout(() => {
+    res.json({
+      msg: 'hello'
+    })
+  }, 300)
+})
+
 app.use(router)
 
 app.use(webpackHotMiddleware(compiler))

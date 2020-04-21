@@ -4,7 +4,7 @@ import { createError } from '../helpers/error'
 
 export default function xhr(config: AxiosRequestConfig): AxiosPromise {
   return new Promise((resolve, reject) => {
-    const { data = null, method = 'GET', url, headers, responseType, timeout } = config
+    const { data = null, method = 'GET', url, headers, responseType, timeout, cancelToken } = config
 
     const request = new XMLHttpRequest()
 
@@ -15,6 +15,14 @@ export default function xhr(config: AxiosRequestConfig): AxiosPromise {
     if (timeout) {
       // 设置过期时间
       request.timeout = timeout
+    }
+
+    if (cancelToken) {
+      // promise 由 pending -> resolved 时执行
+      cancelToken.promise.then(reason => {
+        request.abort()
+        reject(reason)
+      })
     }
 
     request.open(method.toLocaleUpperCase(), url!, true)
