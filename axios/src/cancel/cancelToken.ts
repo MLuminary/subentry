@@ -16,7 +16,7 @@ export default class CancelToken {
     this.promise = new Promise<CancelTypes>(resolve => {
       resolvePromise = resolve
     })
-
+    // 执行 executor 函数，可将参数函数赋值到外部，在外部调用则触发 resolvePromise 来 resolve 掉 this.promise
     executor(message => {
       if (this.reason) {
         return
