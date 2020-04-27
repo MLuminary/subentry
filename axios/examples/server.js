@@ -91,6 +91,14 @@ router.get('/cancel/get', function(req, res) {
 router.get('/more/get', function(req, res) {
   res.json(req.cookies)
 })
+// 模拟后端返回 token 插入到 cookie 中
+app.use(
+  express.static(__dirname, {
+    setHeaders(res) {
+      res.cookie('XSRF-TOKEN-D', '1234abc')
+    }
+  })
+)
 
 app.use(router)
 
