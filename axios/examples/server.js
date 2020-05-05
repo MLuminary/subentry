@@ -7,6 +7,7 @@ const WebpackConfig = require('./webpack.config')
 const cookieParser = require('cookie-parser')
 const multipart = require('connect-multiparty')
 const path = require('path')
+const atob = require('atob')
 
 const app = express()
 const compiler = webpack(WebpackConfig)
@@ -103,6 +104,18 @@ router.get('/more/get', function(req, res) {
 router.post('/more/upload', function(req, res) {
   console.log(req.body, req.files)
   res.end('upload success!')
+})
+
+router.post('/more/post', function(req, res) {
+  const auth = req.headers.authorization
+  const [type, credentials] = auth.split(' ')
+  const [username, password] = atob(credentials).split(':')
+
+  if (type === 'Basic' && username === 'haoqin' && password === '123456') {
+    res.json(req.body)
+  } else {
+    res.end('UnAuthorization')
+  }
 })
 
 // 模拟后端返回 token 插入到 cookie 中

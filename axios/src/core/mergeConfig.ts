@@ -2,7 +2,9 @@ import { AxiosRequestConfig } from './../types'
 import { isObject, deepMerge } from '../helpers/utils'
 
 type ValueFromConfig2KeysType = Array<keyof Pick<AxiosRequestConfig, 'method' | 'data'>>
-type MergeDeepPropertiesKeysType = Array<keyof Pick<AxiosRequestConfig, 'headers' | 'params'>>
+type MergeDeepPropertiesKeysType = Array<
+  keyof Pick<AxiosRequestConfig, 'headers' | 'params' | 'auth'>
+>
 
 export const mergeConfig = (
   config1: AxiosRequestConfig,
@@ -11,7 +13,7 @@ export const mergeConfig = (
   const config = Object.create(null)
 
   const valueFromConfig2Keys: ValueFromConfig2KeysType = ['method', 'data']
-  const mergeDeepPropertiesKeys: MergeDeepPropertiesKeysType = ['headers', 'params']
+  const mergeDeepPropertiesKeys: MergeDeepPropertiesKeysType = ['headers', 'params', 'auth']
   // 用户可能配置带 query 的 url
   const defaultToConfig2Keys = [
     'baseURL',

@@ -4,21 +4,21 @@ import NProgress from 'nprogress'
 
 document.cookie = 'a=b'
 
-// axios.get('/more/get').then(res => {
-//   console.log(res)
-// })
+axios.get('/more/get').then(res => {
+  console.log(res)
+})
 
-// axios
-//   .post(
-//     'http://127.0.0.1:8088/more',
-//     {},
-//     {
-//       withCredentials: true
-//     }
-//   )
-//   .then(res => {
-//     console.log(res)
-//   })
+axios
+  .post(
+    'http://127.0.0.1:8088/more',
+    {},
+    {
+      withCredentials: true
+    }
+  )
+  .then(res => {
+    console.log(res)
+  })
 
 const instance = axios.create()
 
@@ -80,3 +80,20 @@ uploadEl!.addEventListener('click', e => {
     instance.post('/more/upload', data)
   }
 })
+
+axios
+  .post(
+    '/more/post',
+    {
+      a: 1
+    },
+    {
+      auth: {
+        username: 'haoqin',
+        password: '123456'
+      }
+    }
+  )
+  .then(res => {
+    console.log(res)
+  })

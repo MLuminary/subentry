@@ -93,7 +93,12 @@ const addEvent = (
 }
 
 const processHeader = (request: XMLHttpRequest, config: AxiosRequestConfig): void => {
-  const { data, url, headers, withCredentials, xsrfCookieName, xsrfHeaderName } = config
+  const { data, url, headers, withCredentials, xsrfCookieName, xsrfHeaderName, auth } = config
+
+  if (auth) {
+    headers['Authorization'] = 'Basic ' + btoa(auth.username + ':' + auth.password)
+  }
+
   if (isFormData(data)) {
     // 浏览器会自动设置为 multipart/form-data
     delete headers['Content-Type']
