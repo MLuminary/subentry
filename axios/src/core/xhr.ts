@@ -140,7 +140,9 @@ const handleResponse = (
   config: AxiosRequestConfig,
   request: XMLHttpRequest
 ) => {
-  if (response.status >= 200 && response.status < 300) {
+  const { validateStatus } = config
+
+  if (!validateStatus || validateStatus(response.status)) {
     resolve(response)
   } else {
     reject(

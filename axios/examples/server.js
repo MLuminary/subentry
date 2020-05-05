@@ -105,7 +105,7 @@ router.post('/more/upload', function(req, res) {
   console.log(req.body, req.files)
   res.end('upload success!')
 })
-
+// authorization
 router.post('/more/post', function(req, res) {
   const auth = req.headers.authorization
   const [type, credentials] = auth.split(' ')
@@ -116,6 +116,11 @@ router.post('/more/post', function(req, res) {
   } else {
     res.end('UnAuthorization')
   }
+})
+
+router.get('/more/304', function(req, res) {
+  res.status(304)
+  res.end()
 })
 
 // 模拟后端返回 token 插入到 cookie 中

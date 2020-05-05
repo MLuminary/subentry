@@ -16,6 +16,10 @@ const defaults: AxiosRequestConfig = {
     }
   },
 
+  validateStatus(status: number): boolean {
+    return status >= 200 && status < 300
+  },
+
   transformRequest: [
     function(data: any, header: any): any {
       processHeaders(header, data)
