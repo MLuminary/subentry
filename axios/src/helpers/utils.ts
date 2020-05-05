@@ -34,3 +34,7 @@ export const deepMerge = (...objs: any[]) => {
 
   return result
 }
+
+export const isFormData = (val: any): boolean => {
+  return val instanceof FormData
+}

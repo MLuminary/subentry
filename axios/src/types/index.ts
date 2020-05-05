@@ -38,6 +38,10 @@ export interface AxiosRequestConfig {
   cancelToken?: CancelToken
   withCredentials?: boolean
 
+  // 用于监听上传和下载进度
+  onDownloadProgress?: (e: ProgressEvent) => void
+  onUploadProgress?: (e: ProgressEvent) => void
+
   [propName: string]: any
 }
 

@@ -5,6 +5,8 @@ const webpackDevMiddleware = require('webpack-dev-middleware')
 const webpackHotMiddleware = require('webpack-hot-middleware')
 const WebpackConfig = require('./webpack.config')
 const cookieParser = require('cookie-parser')
+const multipart = require('connect-multiparty')
+const path = require('path')
 
 const app = express()
 const compiler = webpack(WebpackConfig)
@@ -24,6 +26,12 @@ app.use(
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(cookieParser())
+
+app.use(
+  multipart({
+    uploadDir: path.resolve(__dirname, 'upload-file')
+  })
+)
 
 const router = express.Router()
 
@@ -91,6 +99,12 @@ router.get('/cancel/get', function(req, res) {
 router.get('/more/get', function(req, res) {
   res.json(req.cookies)
 })
+
+router.post('/more/upload', function(req, res) {
+  console.log(req.body, req.files)
+  res.end('upload success!')
+})
+
 // 模拟后端返回 token 插入到 cookie 中
 app.use(
   express.static(__dirname, {
