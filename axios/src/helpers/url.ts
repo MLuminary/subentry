@@ -83,3 +83,11 @@ export const isURLSameOrigin = (requestUrl: string): boolean => {
 
 const urlParsingNode = document.createElement('a')
 const currentOrigin = resolveURL(window.location.href)
+
+export const isAbsoluteURL = (url: string): boolean => {
+  return /^([a-z][a-z\d\+\-\.]*:)?\/\//i.test(url)
+}
+
+export const combineURL = (baseURL: string, relativeURL?: string): string => {
+  return relativeURL ? baseURL.replace(/\/+$/, '') + '/' + relativeURL.replace(/^\/+/, '') : baseURL
+}
