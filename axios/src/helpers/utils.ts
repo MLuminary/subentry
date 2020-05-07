@@ -38,3 +38,8 @@ export const deepMerge = (...objs: any[]) => {
 export const isFormData = (val: any): boolean => {
   return val instanceof FormData
 }
+
+// 可以让传入的值的类型变为 URLSearchParams
+export const isURLSearchParams = (val: any): val is URLSearchParams => {
+  return val instanceof URLSearchParams
+}

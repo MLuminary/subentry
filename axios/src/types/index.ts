@@ -46,6 +46,8 @@ export interface AxiosRequestConfig {
   // 自定义合法状态码
   validateStatus?: (status: number) => boolean
 
+  paramsSerializer?: (params: any) => string
+
   [propName: string]: any
 }
 

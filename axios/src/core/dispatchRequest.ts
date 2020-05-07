@@ -18,14 +18,15 @@ const processConfig = (config: AxiosRequestConfig) => {
 }
 
 const transformUrl = (config: AxiosRequestConfig) => {
-  const { url, params } = config
-  return buildURL(url!, params)
+  const { url, params, paramsSerializer } = config
+  return buildURL(url!, params, paramsSerializer)
 }
 
 const transformResponseData = (res: AxiosResponse): AxiosResponse => {
   res.data = transform(res.data, res.headers, res.config.transformResponse)
   return res
 }
+
 // 如果 cancelToken 之前已被使用过，则不发此次请求
 function throwIfCancellationRequested(config: AxiosRequestConfig): void {
   if (config.cancelToken) {

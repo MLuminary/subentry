@@ -1,7 +1,7 @@
-import { isDate, isObject } from './utils'
+import { isDate, isObject, isURLSearchParams } from './utils'
 
 const encode = (val: string): string => {
-  return encodeURIComponent(val)
+  return encodeURIComponent(val) // 以下字符不需要被编码
     .replace(/%40/g, '@')
     .replace(/%3A/gi, ':')
     .replace(/%24/g, '$')
@@ -11,36 +11,45 @@ const encode = (val: string): string => {
     .replace(/%5D/gi, ']')
 }
 
-export const buildURL = (url: string, params?: any) => {
+export const buildURL = (url: string, params?: any, paramsSerializer?: (params: any) => string) => {
   if (!params) {
     return url
   }
 
-  const parts: string[] = []
+  let serializedParams: string
 
-  Object.keys(params).forEach(key => {
-    let val = params[key]
-    if (!val) return
-    let values: string[]
+  if (paramsSerializer) {
+    serializedParams = paramsSerializer(params)
+  } else if (isURLSearchParams(params)) {
+    serializedParams = params.toString()
+  } else {
+    const parts: string[] = []
 
-    if (Array.isArray(val)) {
-      values = val
-      key += '[]'
-    } else {
-      values = [val]
-    }
+    Object.keys(params).forEach(key => {
+      let val = params[key]
+      if (!val) return
+      let values: string[]
 
-    values.forEach(value => {
-      if (isDate(value)) {
-        value = value.toISOString()
-      } else if (isObject(value)) {
-        value = JSON.stringify(value)
+      if (Array.isArray(val)) {
+        values = val
+        key += '[]'
+      } else {
+        values = [val]
       }
-      parts.push(`${encode(key)}=${encode(value)}`)
-    })
-  })
 
-  let serializedParams = parts.join('&')
+      values.forEach(value => {
+        if (isDate(value)) {
+          value = value.toISOString()
+        } else if (isObject(value)) {
+          value = JSON.stringify(value)
+        }
+        parts.push(`${encode(key)}=${encode(value)}`)
+      })
+    })
+
+    serializedParams = parts.join('&')
+  }
+
   if (serializedParams) {
     const markIndex = url.indexOf('#')
     if (markIndex !== -1) url = url.slice(0, markIndex)

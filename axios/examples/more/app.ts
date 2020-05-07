@@ -2,6 +2,7 @@ import axios from '../../src/index'
 import 'nprogress/nprogress.css'
 import NProgress from 'nprogress'
 import { AxiosError } from '../../src/helpers/error'
+import qs from 'qs'
 
 document.cookie = 'a=b'
 
@@ -21,7 +22,7 @@ axios
     console.log(res)
   })
 
-const instance = axios.create()
+const instance1 = axios.create()
 
 function calculatePercentage(loaded: number, total: number) {
   return Math.floor(loaded * 1.0) / total
@@ -29,7 +30,7 @@ function calculatePercentage(loaded: number, total: number) {
 
 function loadProgressBar() {
   const setupStartProgress = () => {
-    instance.interceptors.request.use(config => {
+    instance1.interceptors.request.use(config => {
       NProgress.start()
       return config
     })
@@ -40,12 +41,12 @@ function loadProgressBar() {
       console.log(e)
       NProgress.set(calculatePercentage(e.loaded, e.total))
     }
-    instance.defaults.onDownloadProgress = update
-    instance.defaults.onUploadProgress = update
+    instance1.defaults.onDownloadProgress = update
+    instance1.defaults.onUploadProgress = update
   }
 
   const setupStopProgress = () => {
-    instance.interceptors.response.use(
+    instance1.interceptors.response.use(
       response => {
         NProgress.done()
         return response
@@ -67,7 +68,7 @@ loadProgressBar()
 const downloadEl = document.getElementById('download')
 
 downloadEl!.addEventListener('click', e => {
-  instance.get('https://img.mukewang.com/5cc01a7b0001a33718720632.jpg')
+  instance1.get('https://img.mukewang.com/5cc01a7b0001a33718720632.jpg')
 })
 
 const uploadEl = document.getElementById('upload')
@@ -78,7 +79,7 @@ uploadEl!.addEventListener('click', e => {
   if (fileEl.files) {
     data.append('file', fileEl.files[0])
 
-    instance.post('/more/upload', data)
+    instance1.post('/more/upload', data)
   }
 })
 
@@ -119,4 +120,43 @@ axios
   })
   .catch((e: AxiosError) => {
     console.log(e.message)
+  })
+
+axios
+  .get('/more/get', {
+    params: new URLSearchParams('a=b&c=d')
+  })
+  .then(res => {
+    console.log(res)
+  })
+
+axios
+  .get('/more/get', {
+    params: {
+      a: 1,
+      b: 2,
+      c: ['a', 'b', 'c']
+    }
+  })
+  .then(res => {
+    console.log(res)
+  })
+
+const instance = axios.create({
+  paramsSerializer(params) {
+    // 数组的编码格式 c: [1, 2, 3] => c[]=1&c[]=2&c[]=3
+    return qs.stringify(params, { arrayFormat: 'brackets' })
+  }
+})
+
+instance
+  .get('/more/get', {
+    params: {
+      a: 1,
+      b: 2,
+      c: ['a', 'b', 'c']
+    }
+  })
+  .then(res => {
+    console.log(res)
   })
