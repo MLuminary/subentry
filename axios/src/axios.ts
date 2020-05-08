@@ -8,7 +8,7 @@ import Cancel, { isCancel } from './cancel/Cancel'
 
 const createInstance = (config: AxiosRequestConfig): AxiosStatic => {
   const context = new Axios(config)
-  // 将 request 方法拿出
+  // 将 request 方法拿出, 这样可以 axios() 直接调用 request 方法
   const instance = Axios.prototype.request.bind(context)
 
   extend(instance, context)

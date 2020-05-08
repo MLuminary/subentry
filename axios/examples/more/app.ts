@@ -168,3 +168,14 @@ const instance2 = axios.create({
 instance2.get('5cc01a7b0001a33718720632.jpg')
 
 instance2.get('https://img.mukewang.com/szimg/5becd5ad0001b89306000338-360-202.jpg')
+
+const fakeConfig = {
+  baseURL: 'https://www.baidu.com/',
+  url: '/user/12345',
+  params: {
+    idClient: 1,
+    idTest: 2,
+    testString: 'thisIsATest'
+  }
+}
+console.log(axios.getUri(fakeConfig))
