@@ -10,7 +10,7 @@ import {
 
 import { dispatchRequest, transformUrl } from './dispatchRequest'
 import InterceptorManager from './InterceptorManager'
-import { mergeConfig, mergeConfig } from './mergeConfig'
+import { mergeConfig } from './mergeConfig'
 
 interface PromiseChain {
   resolved: ResolvedFn | ((config: AxiosRequestConfig) => AxiosPromise)

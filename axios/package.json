@@ -50,7 +50,7 @@
     "transform": {
       ".(ts|tsx)": "ts-jest"
     },
-    "testEnvironment": "node",
+    "testEnvironment": "jsdom",
     "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js)$",
     "moduleFileExtensions": [
       "ts",
@@ -89,15 +89,17 @@
   "devDependencies": {
     "@commitlint/cli": "^7.1.2",
     "@commitlint/config-conventional": "^7.1.2",
-    "@types/jest": "^23.3.2",
+    "@types/jest": "^25.2.1",
     "@types/node": "^10.11.0",
     "atob": "^2.1.2",
     "body-parser": "^1.18.3",
     "colors": "^1.3.2",
     "commitizen": "^3.0.0",
     "connect-multiparty": "^2.2.0",
+    "cookie-parser": "^1.4.5",
     "coveralls": "^3.0.2",
     "cross-env": "^5.2.0",
+    "css-loader": "^3.5.3",
     "cz-conventional-changelog": "^2.1.0",
     "express": "^4.16.4",
     "husky": "^1.0.1",
@@ -107,6 +109,7 @@
     "lodash.camelcase": "^4.3.0",
     "prettier": "^1.14.3",
     "prompt": "^1.0.0",
+    "react-native-aws3": "^0.0.9",
     "replace-in-file": "^3.4.2",
     "rimraf": "^2.6.2",
     "rollup": "^0.67.0",
@@ -118,7 +121,7 @@
     "semantic-release": "^15.9.16",
     "shelljs": "^0.8.3",
     "travis-deploy-once": "^5.0.9",
-    "ts-jest": "^25.5.0",
+    "ts-jest": "^25.5.1",
     "ts-loader": "^5.3.3",
     "ts-node": "^7.0.1",
     "tslint": "^5.11.0",
@@ -132,8 +135,6 @@
     "webpack-hot-middleware": "^2.24.3"
   },
   "dependencies": {
-    "cookie-parser": "^1.4.5",
-    "css-loader": "^3.5.3",
     "nprogress": "^0.2.0",
     "qs": "^6.9.3"
   }

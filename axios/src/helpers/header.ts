@@ -15,7 +15,7 @@ const normalizeHeaderName = (headers: any, normalizedName: string): void => {
   })
 }
 
-export const processHeaders = (headers: any, data: any): any => {
+export const processHeaders = (headers: any, data: any): void => {
   normalizeHeaderName(headers, 'Content-Type')
 
   if (isObject(data)) {
@@ -23,7 +23,6 @@ export const processHeaders = (headers: any, data: any): any => {
       headers['Content-Type'] = DEFAULT_HEADER_CONTENT_TYPE
     }
   }
-  return headers
 }
 
 export const parseHeaders = (headers: string): any => {
@@ -34,17 +33,15 @@ export const parseHeaders = (headers: string): any => {
   }
 
   headers.split('\r\n').forEach(line => {
-    let [key, val] = line.split(':')
+    // header 的值可能含有多个 ':'
+    let [key, ...vals] = line.split(':')
     key = key.trim().toLowerCase()
 
     if (!key) {
       return
     }
 
-    if (val) {
-      val = val.trim()
-    }
-
+    let val = vals.join(':').trim()
     parsed[key] = val
   })
 

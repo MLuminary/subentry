@@ -14,6 +14,7 @@ export class AxiosError extends Error {
     request?: any,
     response?: AxiosResponse
   ) {
+    // 会造成 分支覆盖率为百分之五十
     super(message)
 
     this.config = config
