@@ -43,6 +43,8 @@ export const mergeConfig = (
   valueFromConfig2Keys.forEach(key => {
     if (typeof config2[key] !== 'undefined') {
       config[key] = config2[key]
+    } else {
+      config[key] = config1[key]
     }
   })
 
