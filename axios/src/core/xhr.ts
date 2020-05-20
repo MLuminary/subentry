@@ -93,7 +93,15 @@ const addEvent = (
 }
 
 const processHeader = (request: XMLHttpRequest, config: AxiosRequestConfig): void => {
-  const { data, url, headers, withCredentials, xsrfCookieName, xsrfHeaderName, auth } = config
+  const {
+    data = null,
+    url,
+    headers,
+    withCredentials,
+    xsrfCookieName,
+    xsrfHeaderName,
+    auth
+  } = config
 
   if (auth) {
     headers['Authorization'] = 'Basic ' + btoa(auth.username + ':' + auth.password)
@@ -114,6 +122,7 @@ const processHeader = (request: XMLHttpRequest, config: AxiosRequestConfig): voi
 
   // set headers
   Object.keys(headers).forEach(name => {
+    // 数据为空的话删除 content-Type
     if (data === null && name.toLowerCase() === 'content-type') {
       delete headers[name]
     } else {
