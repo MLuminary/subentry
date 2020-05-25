@@ -96,7 +96,7 @@ const processHeader = (request: XMLHttpRequest, config: AxiosRequestConfig): voi
   const {
     data = null,
     url,
-    headers,
+    headers = {},
     withCredentials,
     xsrfCookieName,
     xsrfHeaderName,
