@@ -55,13 +55,13 @@ describe('mergeConfig', () => {
             password: 'test'
           }
         }
-      ).toEqual({
-        auth: {
-          username: 'foo',
-          password: 'test'
-        }
-      })
-    )
+      )
+    ).toEqual({
+      auth: {
+        username: 'foo',
+        password: 'test'
+      }
+    })
 
     expect(
       mergeConfig(
