@@ -22,7 +22,7 @@ export const dispatchRequest = (config: AxiosRequestConfig): AxiosPromise => {
 const processConfig = (config: AxiosRequestConfig) => {
   config.url = transformUrl(config)
   config.data = transform(config.data, config.headers, config.transformRequest)
-  config.headers = flattenHeaders(config.headers, config.method || 'get')
+  config.headers = flattenHeaders(config.headers, config.method!)
 }
 
 export const transformUrl = (config: AxiosRequestConfig) => {

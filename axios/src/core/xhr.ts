@@ -8,11 +8,11 @@ import { cookie } from '../helpers/cookie'
 
 export default function xhr(config: AxiosRequestConfig): AxiosPromise {
   return new Promise((resolve, reject) => {
-    const { data = null, method = 'GET', url } = config
+    const { data = null, method, url } = config
 
     const request = new XMLHttpRequest()
 
-    request.open(method.toLocaleUpperCase(), url!, true)
+    request.open(method!.toLocaleUpperCase(), url!, true)
 
     configureRequest(request, config)
 
