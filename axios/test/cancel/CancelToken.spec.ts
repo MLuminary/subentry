@@ -9,6 +9,7 @@ describe('CancelToken', () => {
       let token = new CancelToken(c => {
         cancel = c
       })
+      // tslint:disable-next-line: no-unnecessary-type-assertion
       cancel!('Operation has been canceled.')
       expect(token.reason).toEqual(expect.any(Cancel))
       expect(token.reason!.message).toBe('Operation has been canceled.')
@@ -19,7 +20,9 @@ describe('CancelToken', () => {
       let token = new CancelToken(c => {
         cancel = c
       })
+      // tslint:disable-next-line: no-unnecessary-type-assertion
       cancel!('Operation has been canceled.')
+      // tslint:disable-next-line: no-unnecessary-type-assertion
       cancel!('Operation has been canceled.')
       expect(token.reason).toEqual(expect.any(Cancel))
       expect(token.reason!.message).toBe('Operation has been canceled.')
@@ -44,6 +47,7 @@ describe('CancelToken', () => {
         expect(value.message).toBe('Operation has been canceled.')
         done()
       })
+      // tslint:disable-next-line: no-unnecessary-type-assertion
       cancel!('Operation has been canceled.')
     })
   })
@@ -54,6 +58,7 @@ describe('CancelToken', () => {
       const token = new CancelToken(c => {
         cancel = c
       })
+      // tslint:disable-next-line: no-unnecessary-type-assertion
       cancel!('Operation has been canceled.')
       try {
         token.throwIfRequested()
