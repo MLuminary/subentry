@@ -1,93 +1,81 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <style>
+      .box {
+        width: 400px;
+        height: 400px;
+        margin: 0 auto;
+        text-align: center;
+      }
+      .btnBox {
+        position: relative;
+        width: 400px;
+        height: 300px;
+        box-sizing: border-box;
+        padding-top: 100px;
+        border: 1px solid #000;
+      }
+      .btnBox button {
+        position: absolute;
+        transition: 0.5s;
+        top: 100px;
+        left: 100px;
+        width: 50px;
+        height: 20px;
+      }
+      .btnBox #move {
+        left: 250px;
+      }
+    </style>
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
-  <style>
-    .box{
-      width: 400px;
-      height: 400px;
-      margin: 0 auto;
-      text-align: center;
-    }
-    .btnBox {
-      position: relative;
-      width: 400px;
-      height: 300px;
-      box-sizing: border-box;
-      padding-top: 100px;
-      border: 1px solid #000;
-    }
-    .btnBox button {
-      position: absolute;
-      transition: .5s;
-      top: 100px;
-      left: 100px;
-      width: 50px;
-      height: 20px;
-    }
-    .btnBox #move {
-      left: 250px;
-    }
-
-  </style>
-</head>
-
-<body>
-  <div class="box">
-    <h1>Hutchins是不是最帅的人?</h1>
-    <div class="btnBox" id="btnBox">
-      <button>是</button>
-      <button id="move">不是</button>
+  <body>
+    <div class="box">
+      <h1>HaoQin 是不是最帅的人?</h1>
+      <div class="btnBox" id="btnBox">
+        <button>是</button>
+        <button id="move">不是</button>
+      </div>
     </div>
-  </div>
-  <script>
-    var button = document.getElementById('move'),
-        btnBox = document.getElementById('btnBox');
-    button.onmouseover = function(){
-      
-      var containerWidth  = btnBox.offsetWidth,
-          containerHeight = btnBox.offsetHeight;
+    <script>
+      var button = document.getElementById('move'),
+        btnBox = document.getElementById('btnBox')
+      button.onmouseover = function () {
+        var containerWidth = btnBox.offsetWidth,
+          containerHeight = btnBox.offsetHeight
 
-      var buttonWidth  = button.offsetWidth,
-          buttonHeight = button.offsetHeight;
+        var buttonWidth = button.offsetWidth,
+          buttonHeight = button.offsetHeight
 
-      
-      var top = Math.random()*(containerHeight-20);
-     
-      while(getJust(top,button.offsetTop)<=20){
-        top = Math.random()*(containerHeight-20);
+        var top = Math.random() * (containerHeight - 20)
+
+        while (getJust(top, button.offsetTop) <= 20) {
+          top = Math.random() * (containerHeight - 20)
+        }
+
+        var left = Math.random() * (containerWidth - 50)
+
+        while (getJust(left, button.offsetLeft) <= 50) {
+          left = Math.random() * (containerWidth - 50)
+        }
+
+        button.style.left = left + 'px'
+        button.style.top = top + 'px'
       }
 
-
-      var left = Math.random()*(containerWidth-50);
-      
-      while(getJust(left,button.offsetLeft)<=50){
-        left = Math.random()*(containerWidth-50);
+      //获得两个数相减的绝对值
+      function getJust(num1, num2) {
+        if (num1 < num2) {
+          return num2 - num1
+        } else {
+          return num1 - num2
+        }
       }
-
-      
-
-      button.style.left = left + 'px';
-      button.style.top = top + 'px';  
-    }
-
-    //获得两个数相减的绝对值
-    function getJust(num1,num2){
-      if(num1<num2){
-        return num2-num1;
-      }else{
-        return num1-num2;
-      }
-    }
-
-    
-
-  
-  </script>
-</body>
-
+    </script>
+  </body>
 </html>
