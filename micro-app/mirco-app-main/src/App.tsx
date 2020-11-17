@@ -21,6 +21,9 @@ export default function BasicExample() {
           <li>
             <Link to="/react">React 主页</Link>
           </li>
+          <li>
+            <Link to="/vue">Vue 主页</Link>
+          </li>
         </ul>
         <hr />
 

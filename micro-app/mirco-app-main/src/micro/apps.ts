@@ -11,6 +11,12 @@ const apps: any[] = [
     container: '#micro',
     activeRule: '/react',
   },
+  {
+    name: "VueMicroApp",
+    entry: "//localhost:8000",
+    container: "#micro",
+    activeRule: "/vue",
+  },
 ]
 
 export default apps
