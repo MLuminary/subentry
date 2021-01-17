@@ -1,5 +1,5 @@
-import React, { FunctionComponent } from "react";
-import { createFetcher, Placeholder } from "../suspense";
+import React from 'react'
+import { createFetcher, Placeholder } from '../suspense'
 
 const fetchAPi = () => {
   // api 需要返回 promise
@@ -13,18 +13,15 @@ const fetchAPi = () => {
 const getDate = createFetcher(fetchAPi)
 
 const Inner = () => {
-  return (
-    <h1>{getDate()}</h1>
-  )
+  return <h1>{getDate()}</h1>
 }
 
 export class SuspenseDemo extends React.Component {
-
   render() {
-       return (
-          <Placeholder>
-            <Inner />
-          </Placeholder>
-       );
-   }
+    return (
+      <Placeholder>
+        <Inner />
+      </Placeholder>
+    )
+  }
 }
