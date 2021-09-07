@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "promises-aplus-tests": "^2.1.2"
+  },
+  "scripts": {
+    "test": "tsc promise && promises-aplus-tests promise.js"
+  }
+}
