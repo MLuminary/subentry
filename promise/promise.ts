@@ -18,19 +18,6 @@ export type OnFulfilled<T> =
   | undefined
 export type OnRejected<T> = ((reason: any) => PromiseLike<T>) | null | undefined
 
-const isThenable = (value: any) => {
-  if (
-    typeof value === 'object' &&
-    value !== null &&
-    value.then &&
-    typeof value.then === 'function'
-  ) {
-    return true
-  } else {
-    return false
-  }
-}
-
 class MyPromise<T> {
   private state: State
   private value: any
