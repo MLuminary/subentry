@@ -13,17 +13,24 @@ export type Executor<T> = (resolve: Resolve<T>, reject: Reject) => void
 export type ResolveValue<T> = T | PromiseLike<T>
 
 export type OnFulfilled<T> =
-  | ((value: unknown) => T | PromiseLike<T>)
+  | ((value: T) => T | PromiseLike<T> | MyPromise<T> | void)
   | null
   | undefined
-export type OnRejected<T> = ((reason: any) => PromiseLike<T>) | null | undefined
+export type OnRejected<T> = ((reason: any) => PromiseLike<T> | void | MyPromise<T>) | null | undefined
 
-class MyPromise<T> {
-  private state: State
-  private value: any
-  private onFulfilled: any[]
-  private onRejected: any[]
+abstract class MyPromiseAdaptor<T> {
+  protected state: State
+  protected value: any
+  protected onFulfilled: any[]
+  protected onRejected: any[]
+
+  then: (onFulfilled?: OnFulfilled<T>, onRejected?: OnRejected<T>) => MyPromise<T>
+}
+
+class MyPromise<T> extends MyPromiseAdaptor<T> {
+
   constructor(executor: Executor<T>) {
+    super()
     this.state = State.PENDING
     this.value = undefined
     this.onFulfilled = [] // 同一个 promise 可以有多个 then，需要顺序执行，所以这里是数组
@@ -36,7 +43,7 @@ class MyPromise<T> {
     }
   }
 
-  updateResult = (value: any, state: State) => {
+  _updateResult = (value: any, state: State) => {
     /*
       Process the promise if it is still in pending state.
       An already rejected or resolved promise is not processed
@@ -56,11 +63,11 @@ class MyPromise<T> {
   }
 
   _resolve = (value: any) => {
-    this.updateResult(value, State.FULFILLED)
+    this._updateResult(value, State.FULFILLED)
   }
 
   _reject = (error: any) => {
-    this.updateResult(error, State.REJECTED)
+    this._updateResult(error, State.REJECTED)
   }
   /**
    *
@@ -69,7 +76,7 @@ class MyPromise<T> {
    * @param resolve promise2 的 resolve
    * @param reject promise2 的 reject
    */
-  resolvePromise<T>(
+  _resolvePromise<T>(
     promise2: MyPromise<T>,
     x: any,
     resolve: Resolve<T>,
@@ -88,7 +95,7 @@ class MyPromise<T> {
             x,
             (y: any) => {
               if (used) return
-              this.resolvePromise(promise2, y, resolve, reject)
+              this._resolvePromise(promise2, y, resolve, reject)
               used = true
             },
             (r: any) => {
@@ -112,7 +119,7 @@ class MyPromise<T> {
     }
   }
 
-  then = (onFulfilled?: OnFulfilled<T>, onRejected?: OnRejected<T>) => {
+  then = (onFulfilled?: OnFulfilled<T>, onRejected?: OnRejected<T>): MyPromise<T> => {
     const _onFulfilled =
       typeof onFulfilled === 'function' ? onFulfilled : (value: any) => value
 
@@ -123,13 +130,13 @@ class MyPromise<T> {
           throw reason
         }
 
-    const promise2 = new MyPromise((resolve, reject) => {
+    const promise2 = new MyPromise<T>((resolve, reject) => {
       if (this.state === State.PENDING) {
         this.onFulfilled.push(() => {
           setTimeout(() => {
             try {
               const x = _onFulfilled(this.value)
-              this.resolvePromise(promise2, x, resolve, reject)
+              this._resolvePromise(promise2, x, resolve, reject)
             } catch (e) {
               reject(e)
             }
@@ -140,7 +147,7 @@ class MyPromise<T> {
           setTimeout(() => {
             try {
               const x = _onRejected(this.value)
-              this.resolvePromise(promise2, x, resolve, reject)
+              this._resolvePromise(promise2, x, resolve, reject)
             } catch (e) {
               reject(e)
             }
@@ -150,7 +157,7 @@ class MyPromise<T> {
         setTimeout(() => {
           try {
             const x = _onFulfilled(this.value)
-            this.resolvePromise(promise2, x, resolve, reject)
+            this._resolvePromise(promise2, x, resolve, reject)
           } catch (e) {
             reject(e)
           }
@@ -159,7 +166,7 @@ class MyPromise<T> {
         setTimeout(() => {
           try {
             const x = _onRejected(this.value)
-            this.resolvePromise(promise2, x, resolve, reject)
+            this._resolvePromise(promise2, x, resolve, reject)
           } catch (e) {
             reject(e)
           }
@@ -168,6 +175,63 @@ class MyPromise<T> {
     })
 
     return promise2
+  }
+
+  static resolve = <T>(param: T): MyPromise<T> => {
+    if (param instanceof MyPromise) {
+      return param
+    }
+
+    return new MyPromise((resolve) => {
+      resolve(param)
+    })
+  }
+
+  static reject = <T>(reason): MyPromise<T> => {
+    return new MyPromise((resolve, reject) => {
+      reject(reason)
+    })
+  }
+
+  static all = <T>(...values: (T | PromiseLike<T>)[]): MyPromise<T[]> => {
+    return new MyPromise((resolve, reject) => {
+      let count = 0
+      const result = []
+      const length = values.length
+
+      values.forEach((value, index) => {
+        MyPromise.resolve(value).then(res => {
+          result[index] = res
+          count++
+          if (count === length) {
+            resolve(result)
+          }
+        }, reject)
+      })
+    })
+  }
+
+  finally = (callback: Function): MyPromise<T> => {
+    return this.then((value) => {
+      return MyPromise.resolve(callback()).then(() => value)
+    }, (reason) => {
+      return MyPromise.resolve(callback()).then(() => reason)
+    })
+  }
+
+  static race = <T>(values: (T | PromiseLike<T>)[]): MyPromise<T> => {
+    return new MyPromise((resolve, reject) => {
+      if (values.length === 0) {
+        return
+      } else {
+        for (let i = 0; i < values.length; i++) {
+          MyPromise.resolve(values[i]).then(res => {
+            resolve(res)
+            return
+          }, reject)
+        }
+      }
+    })
   }
 }
 
@@ -194,7 +258,6 @@ promise2
   .then((value) => {
     console.info(value)
   })
-
 
 // @ts-ignore
 MyPromise.defer = MyPromise.deferred = function () {
