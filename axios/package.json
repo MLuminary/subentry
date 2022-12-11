@@ -139,6 +139,6 @@
     "webpack-dev-middleware": "^3.5.0",
     "webpack-hot-middleware": "^2.24.3",
     "nprogress": "^0.2.0",
-    "qs": "^6.9.3"
+    "qs": "^6.9.7"
   }
 }
